@@ -1,9 +1,60 @@
 <!DOCTYPE html>
 <head>
-    <title>XXX</title>
-    <link rel="stylesheet" href="../css/style.css">
+    <title>AI86</title>
+    <script
+      type="module"
+      src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"
+    ></script>
+    <link rel="stylesheet" href="../css/gamepage.css">
 </head>
-<body>
+<body>      
+    <aside>
+    <div class="navigation">
+      <div class="menu-toggle"></div>
+      <ul class="list">
+        <li class="list-item" style="--color: #f44336">
+          <a href="lobby.html">
+            <span class="icon">
+              <ion-icon name="home-outline"></ion-icon>
+            </span>
+            <span class="text">Home</span>
+          </a>
+        </li>
+        <li class="list-item" style="--color: #b145e9">
+          <a href="leaderboard.html">
+            <span class="icon">
+              <ion-icon name="medal-outline"></ion-icon>
+            </span>
+            <span class="text">Leaderboard</span>
+          </a>
+        </li>
+        <li class="list-item" style="--color: #ffa117">
+          <a href="gamepage.html">
+            <span class="icon">
+              <ion-icon name="car-outline"></ion-icon>
+            </span>
+            <span class="text">Play</span>
+          </a>
+        </li>
+        <li class="list-item" style="--color: #0fc70f">
+          <a href="#">
+            <span class="icon">
+              <ion-icon name="call-outline"></ion-icon>
+            </span>
+            <span class="text">Contact</span>
+          </a>
+        </li>
+        <li class="list-item" style="--color: #2196f3">
+          <a href="profile.html">
+            <span class="icon">
+              <ion-icon name="grid-outline"></ion-icon>
+            </span>
+            <span class="text">Profile</span>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </aside>
     <canvas id="carCanvas"></canvas>
     <div id="verticalButtons">
         <button id="save">💾</button>
@@ -11,6 +62,7 @@
         <button id="del">🗑️</button>
         <button id="network">net</button>
     </div>
+    <span id="gametime"></span>
     <canvas id="networkCanvas"></canvas>
     <script src="../js/visualizer.js"></script>
     <script src="../js/network.js"></script>
@@ -20,5 +72,6 @@
     <script src="../js/controls.js"></script>
     <script src="../js/car.js"></script>
     <script src="../js/game.js"></script>
+    <script src="../js/index.js"></script>
 </body>
 </html>

@@ -1,0 +1,31 @@
+name: deployment
+
+on:
+  push:
+    branches:
+      - '*'
+  workflow_dispatch:
+
+env:
+  POSTGRES_HOST: postgres
+  DB_NAME: memo-wall-test
+  DB_USERNAME: postgres
+  DB_PASSWORD: postgres
+
+jobs:
+  testing:
+    runs-on: ubuntu-latest
+    container: node:latest
+    services:
+      postgres:
+        image: postgres:latest
+        env: 
+          POSTGRES_DB: ${{env.DB_NAME}}
+          POSTGRES_USERNAME: ${{env.DB_USERNAME}}
+          POSTGRES_PASSWORD: ${{env.DB_PASSWORD}}
+        ports:
+          - 5432:5432
+    steps:
+      - uses: actions/checkout@v3
+      - run: |
+          yarn install
