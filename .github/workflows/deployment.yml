@@ -28,6 +28,4 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - run: |
-          yarn install 
-          yarn knex migrate:latest
-          yarn jest
+          yarn install
