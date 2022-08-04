@@ -1,5 +1,6 @@
 const carCanvas = document.getElementById("carCanvas");
-carCanvas.width = 200;
+// carCanvas.width = 200;
+carCanvas.width = 1200;
 const networkCanvas = document.getElementById("networkCanvas");
 networkCanvas.width = 500;
 networkCanvas.height = 500;
@@ -34,13 +35,13 @@ document.querySelector('#use').addEventListener("click", async()=>{
 });
 
 const traffic = [
-  new Car(road.getLaneCenter(1), -100, 30, 50, "DUMMY", 2, getRandomColor()),
-  new Car(road.getLaneCenter(0), -300, 30, 50, "DUMMY", 2, getRandomColor()),
-  new Car(road.getLaneCenter(2), -300, 30, 50, "DUMMY", 2, getRandomColor()),
-  new Car(road.getLaneCenter(0), -500, 30, 50, "DUMMY", 2, getRandomColor()),
-  new Car(road.getLaneCenter(1), -500, 30, 50, "DUMMY", 2, getRandomColor()),
-  new Car(road.getLaneCenter(1), -700, 30, 50, "DUMMY", 2, getRandomColor()),
-  new Car(road.getLaneCenter(2), -700, 30, 50, "DUMMY", 2, getRandomColor()),
+  // new Car(road.getLaneCenter(1), -100, 30, 50, "DUMMY", 2, getRandomColor()),
+  // new Car(road.getLaneCenter(0), -300, 30, 50, "DUMMY", 2, getRandomColor()),
+  // new Car(road.getLaneCenter(2), -300, 30, 50, "DUMMY", 2, getRandomColor()),
+  // new Car(road.getLaneCenter(0), -500, 30, 50, "DUMMY", 2, getRandomColor()),
+  // new Car(road.getLaneCenter(1), -500, 30, 50, "DUMMY", 2, getRandomColor()),
+  // new Car(road.getLaneCenter(1), -700, 30, 50, "DUMMY", 2, getRandomColor()),
+  // new Car(road.getLaneCenter(2), -700, 30, 50, "DUMMY", 2, getRandomColor()),
 ];
 
 animate();
@@ -68,7 +69,7 @@ function discard() {
 function generateCars(N) {
   const cars = [];
   for (let i = 1; i <= N; i++) {
-    cars.push(new Car(road.getLaneCenter(1), 100, 30, 50, "AI"));
+    cars.push(new Car(road.getLaneCenter(1), 100, 30, 50,0, "AI"));
   }
   return cars;
 }
@@ -95,7 +96,7 @@ function animate(time) {
 
   player.update(road.borders, traffic);
 
-  carCanvas.height = window.innerHeight;
+  carCanvas.height = 1200;
   // networkCanvas.height = window.innerHeight;
 
   carCtx.save();
