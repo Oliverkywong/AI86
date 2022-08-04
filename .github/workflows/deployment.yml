@@ -30,4 +30,3 @@ jobs:
       - run: |
           yarn install 
           yarn knex migrate:latest
-          yarn jest
