@@ -11,18 +11,18 @@ class Road {
     this.top = -infinity;
     this.bottom = infinity;
 
-    // const topLeft = { x: this.left, y: this.top };
-    // const topRight = { x: this.right, y: this.top };
-    // const bottomLeft = { x: this.left, y: this.bottom };
-    // const bottomRight = { x: this.right, y: this.bottom };
+    const topLeft = { x: this.left, y: this.top };
+    const topRight = { x: this.right, y: this.top };
+    const bottomLeft = { x: this.left, y: this.bottom };
+    const bottomRight = { x: this.right, y: this.bottom };
 
-    // const topLeft = { x: 100, y: 200 };
-    // const topRight = { x: 1100, y: 200};
-    // const bottomLeft = { x: 10, y: 110 };
-    // const bottomRight = { x: 110, y: 120};
+    // const topLeft = (450, -235, 300, 0, 2 * Math.PI);
+    // const topRight = (450, -235, 450, 0, 2 * Math.PI);
+    // const bottomLeft = (450, -235, 300, 0, 2 * Math.PI);
+    // const bottomRight = (450, -235, 450, 0, 2 * Math.PI);
 
     this.borders = [
-    [(450, -235, 300, 0, 2 * Math.PI)],[(450, -235, 450, 0, 2 * Math.PI)]
+  [topLeft,bottomLeft],[topRight, bottomRight]
     ];
   }
 
