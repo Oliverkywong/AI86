@@ -57,8 +57,15 @@ document.querySelector("#save").addEventListener("click", async()=> {
 
 document.querySelector("#del").addEventListener("click", function () {discard()});
 
-document.querySelector("#network").addEventListener("click", function (e) {
-  document.querySelector("#network").ClassList.add('hidden');
+let netopen = true;
+document.querySelector("#network").addEventListener("click", function () {
+  if(netopen){
+    document.querySelector("#networkCanvas").classList.add('hidden');
+    return netopen = false;
+  }else{
+    document.querySelector("#networkCanvas").classList.remove('hidden');
+    return netopen = true;
+  }
 });
 
 function discard() {
@@ -74,15 +81,11 @@ function generateCars(N) {
 }
 
 function animate(time) {
-  // gametime += 1;
-  // showtime = gametime * 20 / 1000;
   let showtime = Date.now() - start;
   let second = (showtime / 1000) % 60;
   let minute = (showtime / 1000 / 60) % 60;
-  // console.log(
-  //   "Time: " + Math.floor(minute) + "m" + (Math.floor(second) % 60),
-  //   "s" + (showtime % 1000)
-  // );
+
+  document.querySelector('#gametime').innerHTML =   `Time:  ${ Math.floor(minute)} m ${(Math.floor(second) % 60)} s ${(showtime % 1000)}`;
 
   for (let i = 0; i < traffic.length; i++) {
     traffic[i].update(road.borders, []);
@@ -96,7 +99,6 @@ function animate(time) {
   player.update(road.borders, traffic);
 
   carCanvas.height = window.innerHeight;
-  // networkCanvas.height = window.innerHeight;
 
   carCtx.save();
 
