@@ -33,18 +33,18 @@ jobs:
           yarn install
 
 
- deploy:
-    if: github.ref_name == 'production'
-    runs-on: ubuntu-latest
-    needs: testing
-    steps:
-    - name: ssh to pull latest version
-      uses: fifsky/ssh-action@master
-      with:
-        command: |
-          cd AI86
-          git pull 
-          forever restart 0
-        host: 18.136.98.33
-        user: ubuntu
-        key: ${{secrets.SSH_PRIVATE_KEY}}
+deploy:
+   if: github.ref_name == 'production'
+   runs-on: ubuntu-latest
+   needs: testing
+   steps:
+   - name: ssh to pull latest version
+     uses: fifsky/ssh-action@master
+     with:
+       command: |
+         cd AI86
+         git pull 
+         forever restart 0
+       host: 18.136.98.33
+       user: ubuntu
+       key: ${{secrets.SSH_PRIVATE_KEY}}
