@@ -86,18 +86,20 @@
                 <div class="card-3d-wrapper">
                   <div class="card-front">
                     <div class="center-wrap">
-                      <div class="section text-center">
+                      <span id="loginstatus"></span>
+                      <!-- <form class="section text-center" action="/login" method="post" > -->
+                      <form class="section text-center">
                         <h4 class="mb-4 pb-3">Log In</h4>
                         <div class="form-group">
                           <input
-                            type="text"
-                            name="playerid"
+                            type="email"
+                            name="logemail"
                             class="form-style"
-                            placeholder="Player ID"
-                            id="playerid"
+                            placeholder="Player Email"
+                            id="playeremail"
                             autocomplete="off"
                           />
-                          <i class="input-icon uil uil-user"></i>
+                          <i class="input-icon uil uil-at"></i>
                         </div>
                         <div class="form-group mt-2">
                           <input
@@ -110,24 +112,25 @@
                           />
                           <i class="input-icon uil uil-lock-alt"></i>
                         </div>
-                        <a href="#" class="btn mt-4">submit</a>
+                        <button type="submit" class="btn mt-4">submit</button>
                         <p class="mb-0 mt-4 text-center">
                           <a href="#" class="link">Forgot your password?</a>
                         </p>
-                      </div>
+                      </form>
                     </div>
                   </div>
                   <div class="card-back">
                     <div class="center-wrap">
-                      <div class="section text-center">
+                      <!-- <form class="section text-center" method="POST" action="/register"> -->
+                      <form class="section text-center">
                         <h4 class="mb-4 pb-3">Sign Up</h4>
                         <div class="form-group">
                           <input
                             type="text"
-                            name="loginame"
+                            name="signame"
                             class="form-style"
                             placeholder="Player ID"
-                            id="loginame"
+                            id="signame"
                             autocomplete="off"
                           />
                           <i class="input-icon uil uil-user"></i>
@@ -135,10 +138,10 @@
                         <div class="form-group mt-2">
                           <input
                             type="email"
-                            name="logemail"
+                            name="sigemail"
                             class="form-style"
                             placeholder="Your Email"
-                            id="logemail"
+                            id="sigemail"
                             autocomplete="off"
                           />
                           <i class="input-icon uil uil-at"></i>
@@ -146,16 +149,16 @@
                         <div class="form-group mt-2">
                           <input
                             type="password"
-                            name="logpass"
+                            name="sigpass"
                             class="form-style"
                             placeholder="Password"
-                            id="logpass"
+                            id="sigpass"
                             autocomplete="off"
                           />
                           <i class="input-icon uil uil-lock-alt"></i>
                         </div>
-                        <a href="#" class="btn mt-4">submit</a>
-                      </div>
+                        <button type="submit" class="btn mt-4">submit</button>
+                      </form>
                     </div>
                   </div>
                 </div>
