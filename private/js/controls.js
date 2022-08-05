@@ -27,7 +27,7 @@ class Controls {
         case "ArrowUp":
           this.forward = true;
           break;
-        case "ArrowDown":
+        case " ":
           this.reverse = true;
           break;
       }
@@ -43,7 +43,7 @@ class Controls {
         case "ArrowUp":
           this.forward = false;
           break;
-        case "ArrowDown":
+        case " ":
           this.reverse = false;
           break;
       }

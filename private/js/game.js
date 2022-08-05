@@ -1,6 +1,6 @@
 const carCanvas = document.getElementById("carCanvas");
 // carCanvas.width = 200;
-carCanvas.width = 1200;
+carCanvas.width = 1280;
 const networkCanvas = document.getElementById("networkCanvas");
 networkCanvas.width = 500;
 networkCanvas.height = 500;
@@ -14,7 +14,7 @@ const networkCtx = networkCanvas.getContext("2d");
 
 const road = new Road(carCanvas.width / 2, carCanvas.width * 0.9);
 
-const player = new Car(road.getLaneCenter(0), 100, 30, 50, "KEYS", 20, "red");
+const player = new Car(road.getLaneCenter(0), 90, 20, 35, "KEYS", 12, "green");
 
 const N = 100;
 const cars = generateCars(N);
@@ -76,7 +76,7 @@ function discard() {
 function generateCars(N) {
   const cars = [];
   for (let i = 1; i <= N; i++) {
-    cars.push(new Car(road.getLaneCenter(1), 100, 30, 50,0, "AI"));
+    cars.push(new Car(150, 30, 30, 50,0, "AI"));
   }
   return cars;
 }

@@ -10,6 +10,7 @@ class Sensor {
   }
 
   update(roadBorders, traffic, player) {
+    // console.log(roadBorders);
     this.#castRays();
     this.readings = [];
     for (let i = 0; i < this.rays.length; i++) {
