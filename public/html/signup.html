@@ -42,7 +42,7 @@
               </a>
             </li>
             <li class="list-item" style="--color: #ffa117">
-              <a href="html/signup.html">
+              <a href="./signup.html">
                 <span class="icon">
                   <ion-icon name="person-outline"></ion-icon>
                 </span>
@@ -87,8 +87,7 @@
                   <div class="card-front">
                     <div class="center-wrap">
                       <span id="loginstatus"></span>
-                      <!-- <form class="section text-center" action="/login" method="post" > -->
-                      <form class="section text-center">
+                      <form class="section text-center" id="loginform">
                         <h4 class="mb-4 pb-3">Log In</h4>
                         <div class="form-group">
                           <input
@@ -112,7 +111,7 @@
                           />
                           <i class="input-icon uil uil-lock-alt"></i>
                         </div>
-                        <button type="submit" class="btn mt-4">submit</button>
+                        <button id="loginbu" type="submit" class="btn mt-4">submit</button>
                         <p class="mb-0 mt-4 text-center">
                           <a href="#" class="link">Forgot your password?</a>
                         </p>
@@ -121,8 +120,8 @@
                   </div>
                   <div class="card-back">
                     <div class="center-wrap">
-                      <!-- <form class="section text-center" method="POST" action="/register"> -->
-                      <form class="section text-center">
+                      <span id="sigstatus"></span>
+                      <form class="section text-center" id="sigform">
                         <h4 class="mb-4 pb-3">Sign Up</h4>
                         <div class="form-group">
                           <input
@@ -157,7 +156,7 @@
                           />
                           <i class="input-icon uil uil-lock-alt"></i>
                         </div>
-                        <button type="submit" class="btn mt-4">submit</button>
+                        <button id="sigbu" type="submit" class="btn mt-4">submit</button>
                       </form>
                     </div>
                   </div>
@@ -170,5 +169,6 @@
     </div>
     
     <script src="../js/index.js"></script>
+    <script src="../js/sigup.js"></script>
   </body>
 </html>

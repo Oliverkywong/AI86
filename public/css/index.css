@@ -2,11 +2,16 @@ body{
   background-image: url(../img/backgroup1.webp);
   background-size: cover;
   background-position: 10% 20%;
-  animation: change 10s infinite ease-in-out;
+  animation: change 20s infinite ease-in-out;
+  overflow-x: hidden;
 }
 
 @keyframes change{
   0%
+  {
+      background-image: url(../img/backgroup1.webp);
+  }
+  25%
   {
       background-image: url(../img/backgroup2.webp);
   }
@@ -20,54 +25,23 @@ body{
   }
 }
 
-aside {
+/* aside {
   min-width: 15%;
-  /* background-image: linear-gradient(#5389c0 30%, #211cc5); */
   overflow: auto;
-}
-
-/* .main {
-  display: flex;
-  flex-wrap: wrap;
-  background-color: #25599c;
-  min-height: 100vh;
 } */
 
-main {
+/* main {
   width: 85%;
-}
-/* 
-.box {
-  width: 100px;
-  height: 100px;
-  margin: 10px;
-  border-radius: 10px;
-  border: double 5px transparent;
-  background-image: linear-gradient(#1d2a3a, #888888),
-    linear-gradient(45deg, #e94f8f, #5d6bd5);
-  background-origin: border-box;
-  background-clip: content-box, border-box;
-}
-
-.box img {
-  max-height: 60%;
-  border-radius: 10px;
-}
-
-.box p {
-  padding-left: 5px;
 } */
 
 * {
   margin: 0;
   padding: 0;
-  /* box-sizing: border-box; */
   font-family: "Poppins", sans-serif;
 }
 
 .navigation {
   position: fixed;
-  /* inset: 20px 0 20px 20px; */
   width: 75px;
   min-height: 500px;
   background: #fff;
@@ -87,7 +61,6 @@ main {
   left: 0;
   width: 100%;
   height: 60px;
-  /* border-bottom: 1px solid rgba(0, 0, 0, 0.25); */
   cursor: pointer;
   display: flex;
   justify-content: flex-start;
