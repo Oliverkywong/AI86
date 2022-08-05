@@ -1,19 +1,34 @@
-// import Knex from "knex";
+import Knex from "knex";
 import dotenv from "dotenv";
-
-import { Client } from 'pg'
+import express from 'express'
+import formidable from 'formidable'
 
 dotenv.config();
 
-export const client = new Client({
-	database: process.env.DB_NAME,
-	user: process.env.DB_USERNAME,
-	password: process.env.DB_PASSWORD
+const uploadDir = 'img'
+export const form = formidable({
+	uploadDir: uploadDir,
+	keepExtensions: true,
+	maxFiles: 1,
+	maxFileSize: 20 * 1024 * 1024 ** 2,
+	filter: (part) => part.mimetype?.startsWith('image/') || false
 })
 
-// const knexConfigs = require("./knexfile");
-// const configMode = process.env.NODE_ENV || "development";
-// const knexConfig = knexConfigs[configMode];
-// const knex = Knex(knexConfig);
+export const isLogin = (
+	req: express.Request,
+	res: express.Response,
+	next: express.NextFunction
+) => {
+	if (req.session['isLogin']) {
+		next()
+	} else {
+		res.redirect('/')
+	}
+}
+
+const knexConfigs = require("../knexfile");
+const configMode = process.env.NODE_ENV || "development";
+const knexConfig = knexConfigs[configMode];
+export const knex = Knex(knexConfig);
 
  
