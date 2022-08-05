@@ -1,6 +1,7 @@
 const carCanvas = document.getElementById("carCanvas");
 // carCanvas.width = 200;
 carCanvas.width = 1280;
+carCanvas.height = 720;
 const networkCanvas = document.getElementById("networkCanvas");
 networkCanvas.width = 500;
 networkCanvas.height = 500;
@@ -12,9 +13,16 @@ let gametime;
 const carCtx = carCanvas.getContext("2d");
 const networkCtx = networkCanvas.getContext("2d");
 
+// let background = new Image();
+// background.src = "../img/FHrH8TJUcAAetQB_1280jpg.jpg";
+
+
+// background.onload = function(){
+//   carCtx.drawImage(background,300,-600,carCanvas.width,carCanvas.height);   }
+
 const road = new Road(carCanvas.width / 2, carCanvas.width * 0.9);
 
-const player = new Car(road.getLaneCenter(0), 90, 20, 35, "KEYS", 12, "green");
+const player = new Car(road.getLaneCenter(0), 150, 20, 35, "KEYS", 12, "green");
 
 const N = 100;
 const cars = generateCars(N);
@@ -98,8 +106,6 @@ function animate(time) {
   bestCar = cars.find((c) => c.y == Math.min(...cars.map((c) => c.y)));
 
   player.update(road.borders, traffic);
-
-  carCanvas.height = window.innerHeight;
 
   carCtx.save();
 
