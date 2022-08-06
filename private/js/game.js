@@ -1,7 +1,4 @@
 const carCanvas = document.getElementById("carCanvas");
-// carCanvas.width = 200;
-carCanvas.width = 1280;
-carCanvas.height = 720;
 const networkCanvas = document.getElementById("networkCanvas");
 networkCanvas.width = 500;
 networkCanvas.height = 500;
@@ -22,7 +19,7 @@ const networkCtx = networkCanvas.getContext("2d");
 
 const road = new Road(carCanvas.width / 2, carCanvas.width * 0.9);
 
-const player = new Car(road.getLaneCenter(0), 150, 20, 35, "KEYS", 12, "green");
+const player = new Car(130, 150, 20, 35, "KEYS", 12, "green");
 
 const N = 100;
 const cars = generateCars(N);
@@ -84,7 +81,7 @@ function discard() {
 function generateCars(N) {
   const cars = [];
   for (let i = 1; i <= N; i++) {
-    cars.push(new Car(150, 30, 30, 50,0, "AI"));
+    cars.push(new Car(150, 30, 30, 50, "AI"));
   }
   return cars;
 }
@@ -96,6 +93,10 @@ function animate(time) {
 
   document.querySelector('#gametime').innerHTML =   `Time:  ${ Math.floor(minute)} m ${(Math.floor(second) % 60)} s ${(showtime % 1000)}`;
 
+  document.getElementById("carCanvas").style.background = "url('../img/FHrH8TJUcAAetQB_1280jpg.jpg')"
+  carCanvas.width = 1280;
+  carCanvas.height = 720;
+
   for (let i = 0; i < traffic.length; i++) {
     traffic[i].update(road.borders, []);
   }
@@ -103,7 +104,7 @@ function animate(time) {
     cars[i].update(road.borders, traffic);
   }
 
-  bestCar = cars.find((c) => c.y == Math.min(...cars.map((c) => c.y)));
+  // bestCar = cars.find((c) => c.y == Math.min(...cars.map((c) => c.y)));
 
   player.update(road.borders, traffic);
 

@@ -30,6 +30,9 @@ class Controls {
         case " ":
           this.reverse = true;
           break;
+        case "ArrowDown":
+          this.reverse = true;
+          break;
       }
     };
     document.onkeyup = (event) => {
@@ -43,9 +46,12 @@ class Controls {
         case "ArrowUp":
           this.forward = false;
           break;
-        case " ":
-          this.reverse = false;
-          break;
+          case " ":
+            this.reverse = false;
+            break;
+          case "ArrowDown":
+            this.reverse = false;
+            break;
       }
     };
   }

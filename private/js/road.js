@@ -73,7 +73,6 @@ class Road {
     //   // ctx.fill()
     // });
 
-    document.getElementById("carCanvas").style.background = "url('../img/FHrH8TJUcAAetQB_1280jpg.jpg')"
   
 
     for (let i = 0; i < this.borders[0].length - 1; i++) {
