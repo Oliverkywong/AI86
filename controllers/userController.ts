@@ -11,11 +11,13 @@ export class userController{
     		let password = req.body.password.trim()
     		const userlist = await this.uesrservice.userLogin(user,password)
         
-    		if (userlist) {
-                req.session['isLogin'] = true
-    			res.json({ login: true, result: ['login success'] })
-    		} else {
+    		if (!userlist) {
     			res.json({ login: false, result: ['email or password incorrect'] })
+    		} else {
+                req.session['isLogin'] = true
+                req.session['player_id'] = userlist[0].player_id
+                req.session['name'] = userlist[0].name
+    			res.json({ login: true, result: ['login success'] })
     		}
     	} catch (err) {
     		logger.error(err)
@@ -39,5 +41,10 @@ export class userController{
     		logger.error(err)
     		res.status(500).json('Internal Server Error')
     	}
+    }
+
+    logout = async (req:Request, res:Response) => {
+	    req.session['isLogin'] = false
+	    res.redirect('/')
     }
 }

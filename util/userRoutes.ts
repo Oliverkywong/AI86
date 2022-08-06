@@ -1,22 +1,23 @@
 import express from 'express'
-import { knex } from './middlewares'
-import { userService } from '../services/userService'
 import { userController } from '../controllers/userController'
 
 export const userRoutes = express.Router()
 
-userRoutes.use(express.json())
+export function createUserRoutes(usercontroller: userController) {
+	const userRoutes = express.Router()
 
-const userservice = new userService(knex)
-export const usercontroller = new userController(userservice)
+	userRoutes.post('/login',usercontroller.login)
+	userRoutes.post('/register',usercontroller.register)
+	userRoutes.post('/logout',usercontroller.logout)
+	
+	return userRoutes
+}
+// userRoutes.use(express.json())
 
-userRoutes.post('/login',usercontroller.login)
-userRoutes.post('/register',usercontroller.register)
-
-userRoutes.post('/logout', (req, res) => {
-	req.session['isLogin'] = false
-	res.redirect('/')
-})
+// userRoutes.post('/logout', (req, res) => {
+// 	req.session['isLogin'] = false
+// 	res.redirect('/')
+// })
 
 // userRoutes.post('/login', async (req, res) => {
 // 	try {

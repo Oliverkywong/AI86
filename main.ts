@@ -1,25 +1,22 @@
 import express from "express";
 import expressSession from "express-session";
 import fs from "fs";
-import path from "path";
-// import http from "http";
-// import { Server as SocketIO } from "socket.io";
 import { logger } from "./util/logger";
 import { userRoutes } from "./util/userRoutes";
 import { gameRoutes } from "./util/gameRoutes";
+import { file, knex } from "./util/middlewares";
 
-const uploadDir = 'trainAI'
-const file = path.join(uploadDir, 'bestAI.json')
-fs.mkdirSync(uploadDir, { recursive: true })
-if (!fs.existsSync(file)) {
-  fs.writeFileSync(file, '[]')
-}
+// const uploadDir = 'trainAI'
+// const file = path.join(uploadDir, 'bestAI.json')
+// fs.mkdirSync(uploadDir, { recursive: true })
+// if (!fs.existsSync(file)) {
+//   fs.writeFileSync(file, '[]')
+// }
+
 
 const app = express();
 app.use(express.json());
 app.use(express.urlencoded());
-// const server = http.createServer(app);
-// const io = new SocketIO(server);
 
 app.use(
   expressSession({
@@ -28,8 +25,8 @@ app.use(
     saveUninitialized: true,
   })
 );
-// let sessions = {};
 
+// let sessions = {};
 app.use((req, res, next) => {
   // sessions = req.session;
   next();
@@ -40,7 +37,6 @@ app.use(gameRoutes);
 
 app.get('/traincar', async (req, res) => {
   res.send(await fs.promises.readFile(file, 'utf8'));
-
 });
 
 app.post('/traincar', async(req, res) => {
@@ -50,9 +46,18 @@ app.post('/traincar', async(req, res) => {
 })
 
 app.use(express.static("public"));
+
+import { userService } from "./services/userService";
+import { userController } from "./controllers/userController";
+import { createUserRoutes } from "./util/userRoutes";
+
+const userservice = new userService(knex);
+const usercontroller = new userController(userservice)
+app.use(createUserRoutes(usercontroller));
+
 app.use(express.static("private"));
 
-const port = 8989;
+const port = process.env.PORT || 8989
 app.listen(port, function () {
   logger.info("listening on port 8989");
 });
