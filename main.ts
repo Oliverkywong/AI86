@@ -6,7 +6,7 @@ import path from "path";
 // import { Server as SocketIO } from "socket.io";
 import { logger } from "./util/logger";
 import { userRoutes } from "./util/userRoutes";
-
+import { gameRoutes } from "./util/gameRoutes";
 
 const uploadDir = 'trainAI'
 const file = path.join(uploadDir, 'bestAI.json')
@@ -36,6 +36,7 @@ app.use((req, res, next) => {
 });
 
 app.use(userRoutes);
+app.use(gameRoutes);
 
 app.get('/traincar', async (req, res) => {
   res.send(await fs.promises.readFile(file, 'utf8'));
