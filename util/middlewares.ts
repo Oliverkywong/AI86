@@ -2,17 +2,8 @@ import Knex from "knex";
 import dotenv from "dotenv";
 import express from 'express'
 import formidable from 'formidable'
-import path from "path";
-import fs from "fs";
 
 dotenv.config();
-
-const uploadcarDir = 'trainAI'
-export const file = path.join(uploadcarDir, 'bestAI.json')
-fs.mkdirSync(uploadcarDir, { recursive: true })
-if (!fs.existsSync(file)) {
-  fs.writeFileSync(file, '[]')
-}
 
 const uploadimgDir = 'img'
 export const form = formidable({

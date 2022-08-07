@@ -1,18 +1,9 @@
 import express from "express";
 import expressSession from "express-session";
-import fs from "fs";
 import { logger } from "./util/logger";
 import { userRoutes } from "./util/userRoutes";
 import { gameRoutes } from "./util/gameRoutes";
-import { file, knex } from "./util/middlewares";
-
-// const uploadDir = 'trainAI'
-// const file = path.join(uploadDir, 'bestAI.json')
-// fs.mkdirSync(uploadDir, { recursive: true })
-// if (!fs.existsSync(file)) {
-//   fs.writeFileSync(file, '[]')
-// }
-
+import { knex } from "./util/middlewares";
 
 const app = express();
 app.use(express.json());
@@ -35,16 +26,6 @@ app.use((req, res, next) => {
 
 app.use(userRoutes);
 app.use(gameRoutes);
-
-app.get('/traincar', async (req, res) => {
-  res.send(await fs.promises.readFile(file, 'utf8'));
-});
-
-app.post('/traincar', async(req, res) => {
-  let bestAI = JSON.parse(await fs.promises.readFile(file, 'utf8'));
-  bestAI.push({"AI01":req.body});
-  await fs.promises.writeFile(file, JSON.stringify(bestAI));
-})
 
 app.use(express.static("public"));
 

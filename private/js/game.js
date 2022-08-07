@@ -21,26 +21,8 @@ const road = new Road(carCanvas.width / 2, carCanvas.width * 0.9);
 
 const player = new Car(130, 150, 20, 35, "KEYS", 12, "green");
 
-const N = 1;
-const cars = generateCars(N);
-let bestCar = cars[0];
-
-document.querySelector('#use').addEventListener("click", async()=>{
-  const AIcar = await fetch('/traincar');
-  const result = await AIcar.json();
-  const data = JSON.stringify(result[0]["AI01"]);
-  console.log(data)
-  console.log(JSON.stringify(result[0]["AI01"]))
-  for (let i = 0; i < cars.length; i++) {
-    cars[i].brain = JSON.parse(data);
-    if (i != 0) {
-      NeuralNetwork.mutate(cars[i].brain, 0.1);
-    }
-  }
-});
-
 const traffic = [
-  new Car(100, 550, 30, 50, "KEYS", 12, "red")
+  new Car(100, 550, 30, 50, "KEYS", 10, "red")
   // new Car(road.getLaneCenter(1), -100, 30, 50, "DUMMY", 2, getRandomColor()),
   // new Car(road.getLaneCenter(0), -300, 30, 50, "DUMMY", 2, getRandomColor()),
   // new Car(road.getLaneCenter(2), -300, 30, 50, "DUMMY", 2, getRandomColor()),
@@ -50,7 +32,29 @@ const traffic = [
   // new Car(road.getLaneCenter(2), -700, 30, 50, "DUMMY", 2, getRandomColor()),
 ];
 
-animate();
+
+const N = 100;
+const cars = generateCars(N);
+let bestCar = cars[0];
+let a = 0
+
+document.querySelector('#car').addEventListener('click', () => {
+  a++
+  bestCar = cars[a%(N-1)];
+});
+
+document.querySelector('#use').addEventListener("click", async()=>{
+  const AIcar = await fetch('/traincar');
+  const result = await AIcar.json();
+  const data = JSON.stringify(result[0]["AI01"]);
+
+  for (let i = 0; i < cars.length; i++) {
+    cars[i].brain = JSON.parse(data);
+    if (i != 0) {
+      NeuralNetwork.mutate(cars[i].brain, 0.1);
+    }
+  }
+});
 
 document.querySelector("#save").addEventListener("click", async()=> {
   const result = await fetch('/traincar',{
@@ -58,13 +62,13 @@ document.querySelector("#save").addEventListener("click", async()=> {
     headers: {
       'Content-Type': 'application/json'
     },
-    body: JSON.stringify(bestCar.brain)
+    body: JSON.stringify({"AI01":bestCar.brain})
   })
 });
 
 document.querySelector("#del").addEventListener("click", function () {discard()});
 
-let netopen = true;
+let netopen = false;
 document.querySelector("#network").addEventListener("click", function () {
   if(netopen){
     document.querySelector("#networkCanvas").classList.add('hidden');
@@ -78,6 +82,8 @@ document.querySelector("#network").addEventListener("click", function () {
 function discard() {
   localStorage.removeItem("bestBrain");
 }
+
+animate();
 
 function generateCars(N) {
   const cars = [];
