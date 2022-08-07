@@ -2,7 +2,17 @@ import express from "express";
 import expressSession from "express-session";
 import fs from "fs";
 import { logger } from "./util/logger";
+import { userRoutes } from "./util/userRoutes";
+import { gameRoutes } from "./util/gameRoutes";
 import { file, knex } from "./util/middlewares";
+
+// const uploadDir = 'trainAI'
+// const file = path.join(uploadDir, 'bestAI.json')
+// fs.mkdirSync(uploadDir, { recursive: true })
+// if (!fs.existsSync(file)) {
+//   fs.writeFileSync(file, '[]')
+// }
+
 
 const app = express();
 app.use(express.json());
@@ -22,6 +32,9 @@ app.use((req, res, next) => {
   console.log(sessions);
   next();
 });
+
+app.use(userRoutes);
+app.use(gameRoutes);
 
 app.get('/traincar', async (req, res) => {
   res.send(await fs.promises.readFile(file, 'utf8'));

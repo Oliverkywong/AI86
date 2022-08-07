@@ -1,6 +1,8 @@
 import express from 'express'
 import { userController } from '../controllers/userController'
 
+export const userRoutes = express.Router()
+
 export function createUserRoutes(usercontroller: userController) {
 	const userRoutes = express.Router()
 

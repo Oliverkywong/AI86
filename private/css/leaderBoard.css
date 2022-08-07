@@ -1,0 +1,21 @@
+.leaderBoardContainer {
+    width: 900px;
+    background-color: white;
+    display: flex;
+    border-radius: 20px;
+}
+
+.leaderBoardContent {
+    width: 700px;
+    height: 200px;
+    background-color: orange;
+    border-radius: 20px;
+    margin: 50px;
+}
+
+
+.text {
+   display: flex;
+   text-align: center;
+   justify-content: center;
+}
