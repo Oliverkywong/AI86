@@ -59,12 +59,12 @@ class Car {
         this.controls.forward = outputs[0];
         this.controls.left = outputs[1];
         this.controls.right = outputs[2];
-        this.controls.reverse = outputs[3];
+        // this.controls.reverse = outputs[3];
       }
     }
   }
 
-  #assessDamage(roadBorders, traffic, player) {
+  #assessDamage(roadBorders, traffic) {
     for (let i = 0; i < roadBorders.length; i++) {
       if (polysIntersect(this.polygon, roadBorders[i])) {
         return true;

@@ -1,30 +1,35 @@
 import { Knex } from "knex";
 import { checkPassword, hashPassword } from "../util/hash";
+// import {knex} from "../util/middlewares";
 
 export class userService{
     constructor(private knex:Knex){}
 
-    userLogin = async (user:string, password:string) => {
-        let result = await this.knex.select('player_id','name','email','password').from('users').where('email', user)
+    userLogin = async (email:string, password:string) => {
+        let result = await this.knex.select('player_id','name','email','password').from('users').where('email', email)
         if( result.length == 0 ){
-            return false;
+            return 1;
         }else {
             if (await checkPassword(password, result[0]["password"])){
                 return result;
             }else{
-                return false;
+                return 2;
             }
         }
     }
 
-    userRegister = async (user:string, email:string, password:string) => {
+    userRegister = async (name:string, email:string, password:string) => {
         let pwd = await hashPassword(password)
         let id = await this.knex.select('player_id').from('users').orderBy('player_id','desc').limit(1)
         let genid = parseInt(id[0]['player_id'])+1
-        
-        let result = await this.knex.select('email',).from('users').where('email', email)
+        console.log(genid,pwd)
+        let result = await this.knex.select('email').from('users').where('email', email)
+        console.log(result)
         if (result.length ==0){
-            this.knex.insert({ player_id: genid, name: user, email: email, password: pwd}).into("users")
+            // this.knex("users").insert({ player_id: genid, name: name, email: email, password: pwd})
+            this.knex.insert({ player_id: genid, name: name, email: email, password: pwd}).into("users")
+            // this.knex.insert({ genid, name, email, pwd}).into("users")
+            console.log("result")
             return true;
         }else{
             return false;

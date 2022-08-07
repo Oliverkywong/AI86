@@ -16,9 +16,10 @@ app.use(
   })
 );
 
-// let sessions = {};
+let sessions = {};
 app.use((req, res, next) => {
-  // sessions = req.session;
+  sessions = req.session;
+  console.log(sessions);
   next();
 });
 

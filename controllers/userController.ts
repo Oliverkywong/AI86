@@ -7,13 +7,15 @@ export class userController{
 
     login = async (req:Request, res:Response) => {
     	try {
-    		let user = req.body.email.trim()
+    		let email = req.body.email.trim()
     		let password = req.body.password.trim()
-    		const userlist = await this.uesrservice.userLogin(user,password)
+    		const userlist = await this.uesrservice.userLogin(email,password)
         
-    		if (!userlist) {
-    			res.json({ login: false, result: ['email or password incorrect'] })
-    		} else {
+    		if (userlist == 1) {
+    			res.json({ login: false, result: ['email incorrect'] })
+    		}else if (userlist == 2){
+                res.json({ login: false, result: ['password incorrect'] })
+            }else {
                 req.session['isLogin'] = true
                 req.session['player_id'] = userlist[0].player_id
                 req.session['name'] = userlist[0].name
@@ -27,11 +29,11 @@ export class userController{
 
     register = async (req:Request, res:Response) => {
     	try {
-    		let user = req.body.id.trim()
+    		let name = req.body.id.trim()
     		let email = req.body.email.trim()
     		let password = req.body.password.trim()
         
-            const sigup = await this.uesrservice.userRegister(user, email, password)
+            const sigup = await this.uesrservice.userRegister(name, email, password)
             if(sigup){
     		    res.json({ register: true, result: ['register success'] })
             }else{

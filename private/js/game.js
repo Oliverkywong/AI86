@@ -21,7 +21,7 @@ const road = new Road(carCanvas.width / 2, carCanvas.width * 0.9);
 
 const player = new Car(130, 150, 20, 35, "KEYS", 12, "green");
 
-const N = 100;
+const N = 1;
 const cars = generateCars(N);
 let bestCar = cars[0];
 
@@ -40,6 +40,7 @@ document.querySelector('#use').addEventListener("click", async()=>{
 });
 
 const traffic = [
+  new Car(100, 550, 30, 50, "KEYS", 12, "red")
   // new Car(road.getLaneCenter(1), -100, 30, 50, "DUMMY", 2, getRandomColor()),
   // new Car(road.getLaneCenter(0), -300, 30, 50, "DUMMY", 2, getRandomColor()),
   // new Car(road.getLaneCenter(2), -300, 30, 50, "DUMMY", 2, getRandomColor()),
@@ -81,7 +82,7 @@ function discard() {
 function generateCars(N) {
   const cars = [];
   for (let i = 1; i <= N; i++) {
-    cars.push(new Car(150, 30, 30, 50, "AI"));
+    cars.push(new Car(150, 550, 30, 50, "AI"));
   }
   return cars;
 }
@@ -110,7 +111,7 @@ function animate(time) {
 
   carCtx.save();
 
-  carCtx.translate(0, -bestCar.y + carCanvas.height * 0.7);
+  // carCtx.translate(0, -bestCar.y + carCanvas.height * 0.7);
 
   road.draw(carCtx);
   for (let i = 0; i < traffic.length; i++) {
