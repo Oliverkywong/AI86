@@ -6,6 +6,8 @@ networkCanvas.height = 500;
 let start = Date.now();
 let end;
 let gametime;
+let check = true;
+let check2 = true;
 
 const carCtx = carCanvas.getContext("2d");
 const networkCtx = networkCanvas.getContext("2d");
@@ -19,10 +21,10 @@ const networkCtx = networkCanvas.getContext("2d");
 
 const road = new Road(carCanvas.width / 2, carCanvas.width * 0.9);
 
-const player = new Car(130, 150, 20, 35, "KEYS", 12, "green");
+// const player = new Car(130, 150, 20, 35, "KEYS", 12, "green");
 
 const traffic = [
-  new Car(100, 550, 30, 50, "KEYS", 10, "red")
+  new Car(100, 550, 30, 50, "KEYS", 10, "yellow")
   // new Car(road.getLaneCenter(1), -100, 30, 50, "DUMMY", 2, getRandomColor()),
   // new Car(road.getLaneCenter(0), -300, 30, 50, "DUMMY", 2, getRandomColor()),
   // new Car(road.getLaneCenter(2), -300, 30, 50, "DUMMY", 2, getRandomColor()),
@@ -33,14 +35,22 @@ const traffic = [
 ];
 
 
-const N = 100;
+const N = 10;
 const cars = generateCars(N);
 let bestCar = cars[0];
 let a = 0
 
-document.querySelector('#car').addEventListener('click', () => {
+//前一架車
+document.querySelector('#prevcar').addEventListener('click', () => {
   a++
-  bestCar = cars[a%(N-1)];
+  console.log(Math.abs(a))
+  bestCar = cars[Math.abs(a%(N-1))];
+});
+//後一架車
+document.querySelector('#followingcar').addEventListener('click', () => {
+  a--
+  console.log(Math.abs(a))
+  bestCar = cars[Math.abs(a%(N-1))];
 });
 
 document.querySelector('#use').addEventListener("click", async()=>{
@@ -93,10 +103,16 @@ function generateCars(N) {
   return cars;
 }
 
+
 function animate(time) {
   let showtime = Date.now() - start;
   let second = (showtime / 1000) % 60;
   let minute = (showtime / 1000 / 60) % 60;
+
+
+  
+
+  document.querySelector('#realtimespeed').innerHTML = `Speed: ${Math.round(traffic[0]['speed']*10)}km/h`
 
   document.querySelector('#gametime').innerHTML =   `Time:  ${ Math.floor(minute)} m ${(Math.floor(second) % 60)} s ${(showtime % 1000)}`;
 
@@ -111,9 +127,9 @@ function animate(time) {
     cars[i].update(road.borders, traffic);
   }
 
-  // bestCar = cars.find((c) => c.y == Math.min(...cars.map((c) => c.y)));
 
-  player.update(road.borders, traffic);
+
+  // player.update(road.borders, traffic);
 
   carCtx.save();
 
@@ -130,7 +146,7 @@ function animate(time) {
   carCtx.globalAlpha = 1;
   bestCar.draw(carCtx, true);
 
-  player.draw(carCtx);
+  // player.draw(carCtx);
 
   carCtx.restore();
 
@@ -138,3 +154,21 @@ function animate(time) {
   Visualizer.drawNetwork(networkCtx, bestCar.brain);
   requestAnimationFrame(animate);
 }
+// if (
+//   myGamePiece.x < 380 &&
+//   myGamePiece.y > 600 &&
+//   check === false &&
+//   check2 === false
+// ) {
+//   console.log("win");
+//   check = true;
+//   check2 = true;
+// }
+
+// if (myGamePiece.y < 600 && myGamePiece.x < 380) {
+//   check = false;
+// }
+
+// if (myGamePiece.x > 1000) {
+//   check2 = false;
+// }

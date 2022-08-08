@@ -11,6 +11,8 @@ class Car {
     this.friction = 0.05;
     this.angle = 0;
     this.damaged = false;
+    // var ProgressBar = require('progressbar.js')
+    // var line = new ProgressBar.Line('#container');
 
     this.useBrain = controlType == "AI";
 
@@ -168,3 +170,17 @@ class Car {
     ctx.restore();
   }
 }
+
+
+
+// var bar = new ProgressBar.SemiCircle(container, {
+//   strokeWidth: 6,
+//   easing: 'easeInOut',
+//   duration: 1400,
+//   color: '#FFEA82',
+//   trailColor: '#eee',
+//   trailWidth: 1,
+//   svgStyle: null
+// });
+
+// bar.animate(0.5);  // Number from 0.0 to 1.0
