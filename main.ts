@@ -17,13 +17,6 @@ app.use(
   })
 );
 
-let sessions = {};
-app.use((req, res, next) => {
-  sessions = req.session;
-  console.log(sessions);
-  next();
-});
-
 app.use(userRoutes);
 app.use(gameRoutes);
 

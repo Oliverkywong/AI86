@@ -3,13 +3,13 @@ import { Request,Response } from 'express';
 import { logger } from '../util/logger'
 
 export class userController{
-    constructor( private uesrservice: userService){}
+    constructor( private userservice: userService){}
 
     login = async (req:Request, res:Response) => {
     	try {
     		let email = req.body.email.trim()
     		let password = req.body.password.trim()
-    		const userlist = await this.uesrservice.userLogin(email,password)
+    		const userlist = await this.userservice.userLogin(email,password)
         
     		if (userlist == 1) {
     			res.json({ login: false, result: ['email incorrect'] })
@@ -29,11 +29,10 @@ export class userController{
 
     register = async (req:Request, res:Response) => {
     	try {
-    		let name = req.body.id.trim()
+    		let name = req.body.name.trim()
     		let email = req.body.email.trim()
     		let password = req.body.password.trim()
-        
-            const sigup = await this.uesrservice.userRegister(name, email, password)
+            const sigup = await this.userservice.userRegister(name, email, password)
             if(sigup){
     		    res.json({ register: true, result: ['register success'] })
             }else{

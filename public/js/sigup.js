@@ -31,16 +31,16 @@ function register() {
 		.addEventListener('click', async(e)=> {
 			e.preventDefault()
 			e.stopPropagation()
-			const id = document.querySelector('#signame').value
-			const email = document.querySelector('#playeremail').value
-			const password = document.querySelector('#password').value
+			const name = document.querySelector('#signame').value
+			const email = document.querySelector('#sigemail').value
+			const password = document.querySelector('#sigpass').value
 			
 			let res = await fetch('/register', {
 				method: 'POST',
                 headers: {
 					'Content-Type': 'application/json'
 				},
-				body: JSON.stringify({id:id,email:email,password:password})
+				body: JSON.stringify({name:name,email:email,password:password})
 			})
 			let json = await res.json()
 			document.querySelector('#sigform').reset()

@@ -1,49 +1,26 @@
-import Knex from "knex";
-const knexConfigs = require("../knexfile");
-const configMode = process.env.NODE_ENV || "development";
-const knexConfig = knexConfigs[configMode];
-const knex = Knex(knexConfig);
+import { Request } from "express";
 import { userService } from "../services/userService";
 
-const userservice = new userService(knex);
+describe('userController', () => {
+    let userservice: userService;
+    // let usercontroller: userController;
+    let req:Request;
+    // let res:Response;
 
-describe('userService', () => {
-    // beforeAll(() => {
-    //     const userservice = new userService(knex);
-    // });
-    afterAll((done) =>{
-        knex.destroy();
-        done();
+    beforeEach(() => {
+        // userservice = new userService(knex);
+        // usercontroller = new userController(userservice);
+        userservice = {} as any
+        // usercontroller = new userController(userservice);
+        // res =  {status:jest.fn().mockReturnThis()} as any
     })
+
     it('should login', async () => {
-        // const userservice = new userService(knex);
-        
-        const login = await userservice.userLogin('abc@gmail.com', '0001')
-        expect(login).toBe(login)
-    });
-
-    it('should not login with worng email', async()=>{
-        // const userservice = new userService(knex);
-        
-        const login = await userservice.userLogin('abc@gmail.co', '0001')
-        expect(login).toBe(1);
-    })
-
-    it('should not login with worng password', async()=>{
-        // const userservice = new userService(knex);
-
-        const login = await userservice.userLogin('abc@gmail.com', '1111')
-        expect(login).toBe(2);
-    })
-
-    it('should register', async () => {
-        const register = await userservice.userRegister('name', 'abc@example.com', '1111')
-        expect(register).toBeTruthy();
-    })
-
-    it('should not register', async () => {
-        const register = await userservice.userRegister('name', 'abc@gmail.com', '1111')
-        expect(register).toBeFalsy();
+        req = {body:{player_id:1001, name:'admin', email:'abc@gmail.com', password:'0001'}, session:{isLogin: true}} as any
+        userservice.userLogin = jest.fn().mockReturnValue(req);
+        // const login =  await  usercontroller.login(req, res);
+        expect(userservice.userLogin).toBeCalledTimes(0);
+        // expect(login).toBe(1);
     })
 
 })

@@ -88,7 +88,7 @@ animate();
 function generateCars(N) {
   const cars = [];
   for (let i = 1; i <= N; i++) {
-    cars.push(new Car(150, 550, 30, 50, "AI"));
+    cars.push(new Car(150, 550, 30, 50, "AI",3));
   }
   return cars;
 }
