@@ -11,12 +11,13 @@ class Car {
     this.friction = 0.05;
     this.angle = 0;
     this.damaged = false;
-    // var ProgressBar = require('progressbar.js')
-    // var line = new ProgressBar.Line('#container');
+    this.win = false;
+    this.check = true;
+    this.cheat = false;
 
     this.useBrain = controlType == "AI";
 
-    if (controlType != "DUMMY") {
+    if (controlType != "KEY") {
       this.sensor = new Sensor(this);
       this.brain = new NeuralNetwork([this.sensor.rayCount, 6, 4]);
     }
@@ -40,18 +41,27 @@ class Car {
     };
   }
 
-  update(roadBorders, traffic) {
+  update(roadBorders, player, winborder, checkborder, cheatborder) {
+    this.polygon = this.#createPolygon();
+    this.cheat = this.#checkcheat(cheatborder);
+
+    if(!this.cheat){
+      this.check = this.#checkcheck(checkborder);
+      if(this.check){
+        this.win = this.#checkwin(winborder);
+        this.check = false
+      }
+    }
     if (!this.damaged) {
       this.#move();
-      this.polygon = this.#createPolygon();
-      this.damaged = this.#assessDamage(roadBorders, traffic);
+      this.damaged = this.#assessDamage(roadBorders, player);
     } else {
       this.speed = 0;
       this.#move();
       this.damaged = false;
     }
     if (this.sensor) {
-      this.sensor.update(roadBorders, traffic);
+      this.sensor.update(roadBorders, player);
       const offsets = this.sensor.readings.map((s) =>
         s == null ? 0 : 1 - s.offset
       );
@@ -66,14 +76,32 @@ class Car {
     }
   }
 
-  #assessDamage(roadBorders, traffic) {
+  #checkwin(winborder){
+    if(polysIntersect(this.polygon, winborder)){
+      return true;
+    }
+  }
+
+  #checkcheck(checkborder){
+    if(polysIntersect(this.polygon, checkborder)){
+      return true;
+    }
+  }
+
+  #checkcheat(cheatborder){
+    if(polysIntersect(this.polygon, cheatborder)){
+      return true;
+    }
+  }
+
+  #assessDamage(roadBorders, player) {
     for (let i = 0; i < roadBorders.length; i++) {
       if (polysIntersect(this.polygon, roadBorders[i])) {
         return true;
       }
     }
-    for (let i = 0; i < traffic.length; i++) {
-      if (polysIntersect(this.polygon, traffic[i].polygon)) {
+    for (let i = 0; i < player.length; i++) {
+      if (polysIntersect(this.polygon, player[i].polygon)) {
         return true;
       }
     }
@@ -170,17 +198,3 @@ class Car {
     ctx.restore();
   }
 }
-
-
-
-// var bar = new ProgressBar.SemiCircle(container, {
-//   strokeWidth: 6,
-//   easing: 'easeInOut',
-//   duration: 1400,
-//   color: '#FFEA82',
-//   trailColor: '#eee',
-//   trailWidth: 1,
-//   svgStyle: null
-// });
-
-// bar.animate(0.5);  // Number from 0.0 to 1.0
