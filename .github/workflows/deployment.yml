@@ -22,7 +22,7 @@ jobs:
       database:
         image: postgres:latest
         env: 
-          POSTGRES_DB: ${{env.DB_NAME}}
+          POSTGRES_DB: ${{env.TESTDB_NAME}}
           POSTGRES_USERNAME: ${{env.DB_USERNAME}}
           POSTGRES_PASSWORD: ${{env.DB_PASSWORD}}
         ports:
@@ -31,7 +31,8 @@ jobs:
       - uses: actions/checkout@v3
       - run: |
           yarn install
-          yarn knex migrate:latest
+          yarn knex migrate:latest --env test
+          yarn knex seed:run --env test     
           yarn jest
 
 
