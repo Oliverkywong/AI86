@@ -1,15 +1,14 @@
 <!DOCTYPE html>
+
 <head>
-    <title>AI86</title>
-    <script
-      type="module"
-      src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"
-    ></script>
-    <link rel="stylesheet" href="css/gamepage.css">
-    <link rel="stylesheet" href="css/test.css">
+  <title>AI86</title>
+  <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+  <link rel="stylesheet" href="css/gamepage.css">
+  <link rel="stylesheet" href="css/test.css">
 </head>
-<body>      
-    <aside>
+
+<body>
+  <aside>
     <div class="navigation">
       <div class="menu-toggle"></div>
       <ul class="list">
@@ -56,36 +55,39 @@
       </ul>
     </div>
   </aside>
-    <canvas id="carCanvas"></canvas>
-    <div id="verticalButtons">
-        <button id="save">💾</button>
-        <div class="dropdown">
-          <button id="use">use</button>
-          <div class="dropdown-content">
-            <a href="#">AI01</a>
-            <a href="#">AI02</a>
-            <a href="#">AI03</a>
-            <a href="#">AI04</a>
-            <a href="#">AI05</a>
-          </div>
-        </div>
-        <button id="del">🗑️</button>
-        <button id="network">net</button>
-        <button id="prevcar">Previous car</button>
-        <button id="followingcar">Following car</button>
+  <canvas id="carCanvas"></canvas>
+  <div id="verticalButtons">
+    <button id="save">💾</button>
+    <div class="dropdown">
+      <button id="use">use</button>
+      <div class="dropdown-content">
+        <a href="#">AI01</a>
+        <a href="#">AI02</a>
+        <a href="#">AI03</a>
+        <a href="#">AI04</a>
+        <a href="#">AI05</a>
+      </div>
     </div>
-    <span id="gametime"></span>
-    <div role="progressbar" aria-valuemin="0" aria-valuemax="100" style="--value: 50"></div>
-    <span id="realtimespeed"></span>
-    <canvas id="networkCanvas" class="hidden"></canvas>
-    <script src="js/visualizer.js"></script>
-    <script src="js/network.js"></script>
-    <script src="js/sensor.js"></script>
-    <script src="js/utils.js"></script>
-    <script src="js/road.js"></script>
-    <script src="js/controls.js"></script>
-    <script src="js/car.js"></script>
-    <script src="js/game.js"></script>
-    <script src="js/index.js"></script>
+    <button id="del">🗑️</button>
+    <button id="network">net</button>
+    <button id="prevcar">Previous car</button>
+    <button id="followingcar">Following car</button>
+  </div>
+  <span id="gametime"></span>
+  <div role="progressbar" aria-valuemin="0" aria-valuemax="100" style="--value: 50"></div>
+  <span id="realtimespeed"></span>
+  <canvas id="networkCanvas" class="hidden"></canvas>
+  <script src="js/visualizer.js"></script>
+  <script src="js/network.js"></script>
+  <script src="js/sensor.js"></script>
+  <script src="js/utils.js"></script>
+  <script src="js/road.js"></script>
+  <script src="js/controls.js"></script>
+  <script src="js/car.js"></script>
+  <script src="js/game.js"></script>
+  <script src="js/index.js"></script>
+  <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.5.1/socket.io.js"
+    integrity="sha512-9mpsATI0KClwt+xVZfbcf2lJ8IFBAwsubJ6mI3rtULwyM3fBmQFzj0It4tGqxLOGQwGfJdk/G+fANnxfq9/cew=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script> -->
 </body>
 </html>

@@ -35,6 +35,7 @@ const traffic = [
 ];
 
 
+
 const N = 10;
 const cars = generateCars(N);
 let bestCar = cars[0];
