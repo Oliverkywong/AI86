@@ -17,12 +17,12 @@ gameRoutes.post('/game/ranking',GameController.ranking)
 let name;
 gameRoutes.use((req, res, next) => {
     name = req.session['name']
-    console.log(name)
     next();
 })
+
 const uploadDir = 'trainAI'
-// const file = path.join(uploadDir, `${name}.json`)
-const file = path.join(uploadDir, `bestAI.json`)
+const file = path.join(uploadDir, `${name}.json`)
+// const file = path.join(uploadDir, `bestAI.json`)
 fs.mkdirSync(uploadDir, { recursive: true })
 if (!fs.existsSync(file)) {
   fs.writeFileSync(file, '[]')
