@@ -53,6 +53,7 @@ gameRoutes.post('/traincar', async (req, res) => {
         } else {
           bestAI.push(req.body);
           await fs.promises.writeFile(file, JSON.stringify(bestAI));
+          i=bestAI.length
         }
       }
     } else {

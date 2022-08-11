@@ -15,14 +15,8 @@ describe('userService Integration test', () => {
         done();
     })
     it('should login', async () => {
-        const fakeUser = {
-            player_id: 1001,
-            name: 'admin',
-            email: 'abc@gmail.com',
-            password: '$2a$10$Cfyya8V4ZabNWZBbibWAb.j8E0RLdLXbAQm4eaa.dDw5BQTwL851G'
-          }
         const login = await userservice.userLogin('abc@gmail.com', '0001')
-        expect(login).toEqual([fakeUser])
+        expect(login[0].email).toEqual('abc@gmail.com')
     });
 
     it('should not login with worng email', async()=>{
