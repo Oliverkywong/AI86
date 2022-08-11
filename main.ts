@@ -6,6 +6,7 @@ import expressSession from "express-session";
 import { Server as socketIO } from "socket.io";
 import { logger } from "./util/logger";
 import { formatMessage } from "./util/moment";
+import { userJoin, getCurrentUser, userLeave, getRoomUsers, roomCreateOrJoin } from "./util/userSocket"
 import { userRoutes } from "./util/userRoutes";
 import { gameRoutes } from "./util/gameRoutes";
 import { knex } from "./util/middlewares";
@@ -30,13 +31,6 @@ app.use(
   })
 );
 
-let sessions = {};
-app.use((req, res, next) => {
-  sessions = req.session;
-  console.log(sessions);
-  next();
-});
-
 // Routes
 app.use(userRoutes);
 app.use(gameRoutes);
@@ -59,21 +53,55 @@ server.listen(port, function () {
 // Socket IO Chat Related
 
 io.on('connection', socket => {
-  console.log('New WS Connection...');
-
+  // console.log('New WS Connection...');
+  socket.on('joinRoom', ({ username, room }) => {
+  const user = userJoin(socket.id, username, roomCreateOrJoin(room));
+  console.log(user.room);
+  socket.join(user.room);
+      // Welcome user
   socket.emit('message', formatMessage(botName, 'Welcome to game lobby'))
 
-  // Broaddcast when a user connects
-  socket.broadcast.emit('message', formatMessage(botName, 'A user has joined the chat'));
+  // Broadcast when a user connects
+  socket.broadcast.to(user.room).emit('message', formatMessage(botName, `${user.username} has joined the chat`));
+
+  // Send user and room info
+  io.to(user.room).emit('roomUsers', {
+    room: user.room,
+    users: getRoomUsers(user.room)
+  });
+    // } else {
+    //   socket.emit('message', formatMessage(botName, 'Test'))
+    // }
+  });
+
+  socket.on("checkStatus", (args, callback) => {
+    console.log("Length: " + Object.keys(getRoomUsers(args)).length);
+    if(Object.keys(getRoomUsers(args)).length < 3){
+      callback({
+        status: true
+      });
+    }
+  });
 
   // Runs when client disconnects
   socket.on('disconnect', () => {
-    io.emit('message', formatMessage(botName, 'A user has left the chat'))
+    const user = userLeave(socket.id)
+    if (user) {
+      io.to(user.room).emit('message', formatMessage(botName, `${user.username} has left the chat`))
+
+      // Send user and room info
+      io.to(user.room).emit('roomUsers', {
+        room: user.room,
+        users: getRoomUsers(user.room)
+      });
+
+    }
   });
 
   // Listen for chatMessage
   socket.on('chatMessage', (msg) => {
+    const user = getCurrentUser(socket.id);
     // console.log(msg);
-    io.emit('message', formatMessage('USER', msg))
+    io.to(user.room).emit('message', formatMessage(user.username, msg))
   });
 });

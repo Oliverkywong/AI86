@@ -1,5 +1,7 @@
 const carCanvas = document.getElementById("carCanvas");
 const networkCanvas = document.getElementById("networkCanvas");
+// const carColor = document.getElementById("carColor").value;
+// console.log(carColor);
 networkCanvas.width = 500;
 networkCanvas.height = 500;
 
@@ -176,9 +178,9 @@ async function animate(time) {
           showtime = lap
           second = (showtime / 1000) % 60;
           minute = (showtime / 1000 / 60) % 60;
-          wintime =  `${Math.floor(minute)} m ${(Math.floor(second) % 60)} s ${(showtime % 1000)}`
-          document.querySelector('#playertime').innerHTML = `player lap time: ${wintime}`
-   
+          wintime =  {time:`${Math.floor(minute)} m ${(Math.floor(second) % 60)} s ${(showtime % 1000)}`}
+          document.querySelector('#playertime').innerHTML = `player lap time: ${wintime.time}`
+          console.log(wintime)
           await fetch('/leaderboard',{
             method: 'POST',
             headers: {
@@ -215,7 +217,7 @@ async function animate(time) {
 
   carCtx.save();
 
-  road.draw(carCtx);
+  // road.draw(carCtx);
   player.draw(carCtx);
   
   carCtx.globalAlpha = 0.2;
