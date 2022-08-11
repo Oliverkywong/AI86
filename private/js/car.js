@@ -5,6 +5,7 @@ class Car {
     this.width = width;
     this.height = height;
 
+
     this.speed = 0;
     this.acceleration = 0.2;
     this.maxSpeed = maxSpeed;
@@ -81,8 +82,8 @@ class Car {
 
   #checkwin(winborder){
     const touch = getIntersection(
-      {x:this.x,y:this.y-3},
-      {x:this.x-3,y:this.y},
+      {x:this.x,y:this.y-5},
+      {x:this.x-5,y:this.y},
       winborder[0],
       winborder[1],
     );
@@ -207,6 +208,7 @@ class Car {
         this.angle -= 0.05 * flip;
       }
     }
+  
 
     this.x -= Math.sin(this.angle) * this.speed;
     this.y -= Math.cos(this.angle) * this.speed;

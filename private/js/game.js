@@ -16,18 +16,18 @@ const networkCtx = networkCanvas.getContext("2d");
 
 const road = new Road();
 
-const player = new Car(100, 550, 30, 50, "KEYS", 5, "yellow")
+const player = new Car(100, 550, 15, 25, "KEYS", 5, "yellow")
   // new Car(1000, 620, 30, 50, "KEYS", 10, "yellow")
 
 function generateCars(N) {
   const cars = [];
   for (let i = 1; i <= N; i++) {
-    cars.push(new Car(150, 550, 30, 50, "AI",5));
+    cars.push(new Car(83, 513, 15, 25, "AI",5));
   }
   return cars;
 }
 
-const N = 10;
+const N = 50;
 const cars = generateCars(N);
 let bestCar = cars[0];
 let carcount = 0
@@ -51,9 +51,10 @@ document.querySelector('#use').addEventListener("click", async()=>{
   for(let i = 0; i < result.length; i++){
     if(ai==result[i][0]){
     found = result[i][1]
-    }else{
-      document.querySelector("#saveerr").innerHTML = `you dont save this AI`
     }
+    // else{
+    //   document.querySelector("#saveerr").innerHTML = `you dont save this AI`
+    // }
   }
   const data = JSON.stringify(found);
   for (let i = 0; i < cars.length; i++) {
@@ -66,6 +67,9 @@ document.querySelector('#use').addEventListener("click", async()=>{
 
 document.querySelector("#save").addEventListener("click", async()=> {
   const ai = document.querySelector('#saveai').value
+  const AIcar = await fetch('/traincar');
+  const result = await AIcar.json();
+  
   Promise.all([ai, bestCar.brain]).then(async(values) => {
     await fetch('/traincar',{
       method: 'POST',
@@ -153,9 +157,9 @@ async function animate(time) {
 
   document.querySelector('#gametime').innerHTML = `Time:  ${ Math.floor(minute)} m ${(Math.floor(second) % 60)} s ${(showtime % 1000)}`;
 
-  document.getElementById("carCanvas").style.background = "url('../img/FHrH8TJUcAAetQB_1280jpg.jpg')"
+  document.getElementById("carCanvas").style.background = "url('../img/STP58.jpg')"
   carCanvas.width = 1280;
-  carCanvas.height = 720;
+  carCanvas.height = 940;
 
     player.update(road.borders, [], road.winborder, road.checkborder, road.cheatborder);
 
