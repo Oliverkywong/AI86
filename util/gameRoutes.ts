@@ -13,6 +13,7 @@ gameRoutes.use(express.json())
 const GameResult = new gameService(knex)
 export const GameController = new gameController(GameResult)
 
+// Get ranking
 gameRoutes.post('/game/ranking',GameController.ranking)
 
 let name;
@@ -21,7 +22,11 @@ gameRoutes.use((req, res, next) => {
     playerid = req.session['player_id']
     name = req.session['name']
     next();
-})
+});
+
+// Get
+
+
 
 const uploadDir = 'trainAI'
 const file = path.join(uploadDir, `${name}.json`)

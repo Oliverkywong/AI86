@@ -17,8 +17,8 @@ export class gameService{
     // };    
 
     // Insert
-    // createCar = async (model: string, color: string) => {
-    //     await this.knex("car").insert({ model: model, color: color})
-    // }
+    createCar = async (model: string, color: string) => {
+        await this.knex("car").insert({ model: model, color: color})
+    }
 
 }
