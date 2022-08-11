@@ -59,22 +59,32 @@
     <canvas id="carCanvas"></canvas>
     <div id="verticalButtons">
         <button id="save">💾</button>
-        <div class="dropdown">
+        <select id="saveai">
+          <option value="AI01">AI01</option>
+          <option value="AI02">AI02</option>
+          <option value="AI03">AI03</option>
+          <option value="AI04">AI04</option>
+          <option value="AI05">AI05</option>
+        </select>
+
           <button id="use">use</button>
-          <div class="dropdown-content">
-            <a href="#">AI01</a>
-            <a href="#">AI02</a>
-            <a href="#">AI03</a>
-            <a href="#">AI04</a>
-            <a href="#">AI05</a>
-          </div>
-        </div>
+          <select id="useai">
+            <option value="AI01">AI01</option>
+            <option value="AI02">AI02</option>
+            <option value="AI03">AI03</option>
+            <option value="AI04">AI04</option>
+            <option value="AI05">AI05</option>
+          </select>
+
         <button id="del">🗑️</button>
         <button id="network">net</button>
         <button id="prevcar">Previous car</button>
         <button id="followingcar">Following car</button>
     </div>
     <span id="gametime"></span>
+    <span id="playertime"></span>
+    <span id="saveerr"></span>
+    <span id="aitime"></span>
     <div role="progressbar" aria-valuemin="0" aria-valuemax="100" style="--value: 50"></div>
     <span id="realtimespeed"></span>
     <canvas id="networkCanvas" class="hidden"></canvas>

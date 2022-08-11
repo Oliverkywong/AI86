@@ -8,45 +8,54 @@ let end;
 let gametime;
 let check = true;
 let check2 = true;
+let lapcount = 0
+let win = [];
 
 const carCtx = carCanvas.getContext("2d");
 const networkCtx = networkCanvas.getContext("2d");
 
 const road = new Road();
 
-const player = [
-  new Car(100, 550, 30, 50, "KEYS", 10, "yellow")
-];
+const player = new Car(100, 550, 30, 50, "KEYS", 5, "yellow")
+  // new Car(1000, 620, 30, 50, "KEYS", 10, "yellow")
 
 function generateCars(N) {
   const cars = [];
   for (let i = 1; i <= N; i++) {
-    cars.push(new Car(150, 550, 30, 50, "AI",3));
+    cars.push(new Car(150, 550, 30, 50, "AI",5));
   }
   return cars;
 }
 
-const N = 10;
+const N = 100;
 const cars = generateCars(N);
 let bestCar = cars[0];
-let a = 0
+let carcount = 0
 
 //前一架車
 document.querySelector('#prevcar').addEventListener('click', () => {
-  a++
-  bestCar = cars[Math.abs(a%(N-1))];
+  carcount++
+  bestCar = cars[Math.abs(carcount%(N-1))];
 });
 //後一架車
 document.querySelector('#followingcar').addEventListener('click', () => {
-  a--
-  bestCar = cars[Math.abs(a%(N-1))];
+  carcount--
+  bestCar = cars[Math.abs(carcount%(N-1))];
 });
 
 document.querySelector('#use').addEventListener("click", async()=>{
   const AIcar = await fetch('/traincar');
   const result = await AIcar.json();
-  const data = JSON.stringify(result[0]["AI01"]);
-
+  const ai = document.querySelector('#useai').value
+  let found;
+  for(let i = 0; i < result.length; i++){
+    if(ai==result[i][0]){
+    found = result[i][1]
+    }else{
+      document.querySelector("#saveerr").innerHTML = `you dont save this AI`
+    }
+  }
+  const data = JSON.stringify(found);
   for (let i = 0; i < cars.length; i++) {
     cars[i].brain = JSON.parse(data);
     if (i != 0) {
@@ -56,13 +65,64 @@ document.querySelector('#use').addEventListener("click", async()=>{
 });
 
 document.querySelector("#save").addEventListener("click", async()=> {
-  const result = await fetch('/traincar',{
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify({"AI01":bestCar.brain})
-  })
+  const ai = document.querySelector('#saveai').value
+  Promise.all([ai, bestCar.brain]).then(async(values) => {
+    await fetch('/traincar',{
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(values)
+    })
+  });
+
+  // switch (ai) {
+  //   case "AI01":
+  //     await fetch('/traincar',{
+  //       method: 'POST',
+  //       headers: {
+  //         'Content-Type': 'application/json'
+  //       },
+  //       body: JSON.stringify({AI01:bestCar.brain})
+  //     })
+  //     break;
+  //   case "AI02":
+  //     await fetch('/traincar',{
+  //       method: 'POST',
+  //       headers: {
+  //         'Content-Type': 'application/json'
+  //       },
+  //       body: JSON.stringify({AI02:bestCar.brain})
+  //     })
+  //     break;
+  //   case "AI03":
+  //     await fetch('/traincar',{
+  //       method: 'POST',
+  //       headers: {
+  //         'Content-Type': 'application/json'
+  //       },
+  //       body: JSON.stringify({AI03:bestCar.brain})
+  //     })
+  //     break;
+  //   case "AI04":
+  //     await fetch('/traincar',{
+  //       method: 'POST',
+  //       headers: {
+  //         'Content-Type': 'application/json'
+  //       },
+  //       body: JSON.stringify({AI04:bestCar.brain})
+  //     })
+  //     break;
+  //   case "AI05":
+  //     await fetch('/traincar',{
+  //       method: 'POST',
+  //       headers: {
+  //         'Content-Type': 'application/json'
+  //       },
+  //       body: JSON.stringify({AI05:bestCar.brain})
+  //     })
+  //     break;
+  // }
 });
 
 document.querySelector("#del").addEventListener("click", function () {discard()});
@@ -84,12 +144,12 @@ function discard() {
 
 animate();
 
-function animate(time) {
+async function animate(time) {
   let showtime = Date.now() - start;
   let second = (showtime / 1000) % 60;
   let minute = (showtime / 1000 / 60) % 60;
 
-  document.querySelector('#realtimespeed').innerHTML = `Speed: ${Math.round(player[0]['speed']*10)}km/h`
+  document.querySelector('#realtimespeed').innerHTML = `Speed: ${Math.round(player.speed*20)}km/h`
 
   document.querySelector('#gametime').innerHTML = `Time:  ${ Math.floor(minute)} m ${(Math.floor(second) % 60)} s ${(showtime % 1000)}`;
 
@@ -97,26 +157,60 @@ function animate(time) {
   carCanvas.width = 1280;
   carCanvas.height = 720;
 
-  for (let i = 0; i < player.length; i++) {
-    let win = [];
-    player[i].update(road.borders, [], road.winborder, road.checkborder, road.cheatborder);
-    if(!player[i].cheat){
-      if(!player[i].check){
-        if(player[i].win){
-          win.push(`player win: ${ Math.floor(minute)} m ${(Math.floor(second) % 60)} s ${(showtime % 1000)}`)
-          console.log(win[0])
+    player.update(road.borders, [], road.winborder, road.checkborder, road.cheatborder);
+
+    if(!player.cheat){
+      if(!player.check){
+        if(player.win){
+          win.push(showtime)
+          if(lapcount==0){
+            lap = win[lapcount]
+          }else{
+            lap = win[lapcount]-win[lapcount-1]
+          }
+          // lapcount++
+          showtime = lap
+          second = (showtime / 1000) % 60;
+          minute = (showtime / 1000 / 60) % 60;
+          wintime =  `${Math.floor(minute)} m ${(Math.floor(second) % 60)} s ${(showtime % 1000)}`
+          document.querySelector('#playertime').innerHTML = `player lap time: ${wintime}`
+          
+
+          // console.log(req.session['name'])
+          // const promise1 = req.session['name']
+          // const promise2 = wintime
+          // Promise.all([promise1, promise2]).then(async(values) => {
+            await fetch('/leaderboard',{
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(wintime)
+          })
+          // });
+
         }
       }
     }
-  }
+
   for (let i = 0; i < cars.length; i++) {
     let win = [];
     cars[i].update(road.borders, player, road.winborder, road.checkborder, road.cheatborder);
+
     if(!cars[i].cheat){
       if(!cars[i].check){
         if(cars[i].win){
-          win.push(`AI win: ${ Math.floor(minute)} m ${(Math.floor(second) % 60)} s ${(showtime % 1000)}`)
-          console.log(win[0])
+          win.push(showtime)
+          if(lapcount==0){
+            lap = win[lapcount]
+          }else{
+            lap = win[lapcount]-win[lapcount-1]
+          }
+          // lapcount++
+          showtime = lap
+          second = (showtime / 1000) % 60;
+          minute = (showtime / 1000 / 60) % 60;
+          document.querySelector('#aitime').innerHTML = `AI lap time: ${Math.floor(minute)} m ${(Math.floor(second) % 60)} s ${(showtime % 1000)} \n`
         }
       }
     }
@@ -125,9 +219,8 @@ function animate(time) {
   carCtx.save();
 
   road.draw(carCtx);
-  for (let i = 0; i < player.length; i++) {
-    player[i].draw(carCtx);
-  }
+  player.draw(carCtx);
+  
   carCtx.globalAlpha = 0.2;
   for (let i = 0; i < cars.length; i++) {
     cars[i].draw(carCtx);

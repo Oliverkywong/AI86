@@ -9,8 +9,8 @@ class Road {
     const checkbot = {x:365, y:695}
     this.checkborder = [checktop, checkbot]
 
-    const cheattop = {x:345, y:575}
-    const cheatbot = {x:345, y:695}
+    const cheattop = {x:325, y:575}
+    const cheatbot = {x:325, y:695}
     this.cheatborder = [cheattop, cheatbot]
 
     this.borders = [
@@ -19,10 +19,19 @@ class Road {
     ];}
 
   draw(ctx) {
-
     ctx.beginPath();
     ctx.moveTo(this.winborder[0].x, this.winborder[0].y);
     ctx.lineTo(this.winborder[1].x, this.winborder[1].y);
+    ctx.strokeStyle = "white";
+    ctx.stroke();
+    ctx.beginPath();
+    ctx.moveTo(this.cheatborder[0].x, this.cheatborder[0].y);
+    ctx.lineTo(this.cheatborder[1].x, this.cheatborder[1].y);
+    ctx.strokeStyle = "white";
+    ctx.stroke();
+    ctx.beginPath();
+    ctx.moveTo(this.checkborder[0].x, this.checkborder[0].y);
+    ctx.lineTo(this.checkborder[1].x, this.checkborder[1].y);
     ctx.strokeStyle = "white";
     ctx.stroke();
 
