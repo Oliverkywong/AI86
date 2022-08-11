@@ -1,5 +1,7 @@
 const carCanvas = document.getElementById("carCanvas");
 const networkCanvas = document.getElementById("networkCanvas");
+const carColor = document.getElementById("carColor").value;
+console.log(carColor);
 networkCanvas.width = 500;
 networkCanvas.height = 500;
 

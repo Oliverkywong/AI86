@@ -1,77 +1,84 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>AI86</title>
-    <link rel="stylesheet" href="css/index.css" />
-    <link rel="stylesheet" href="css/profile.css" />
-    <script
-      type="module"
-      src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"
-    ></script>
-  </head>
-  <body>
-    <div class="main">
-      <aside>
-        <div class="navigation">
-          <div class="menu-toggle"></div>
-          <ul class="list">
-            <li class="list-item" style="--color: #f44336">
-              <a href="lobby.html">
-                <span class="icon">
-                  <ion-icon name="home-outline"></ion-icon>
-                </span>
-                <span class="text">Home</span>
-              </a>
-            </li>
-            <li class="list-item" style="--color: #b145e9">
-              <a href="leaderboard.html">
-                <span class="icon">
-                  <ion-icon name="medal-outline"></ion-icon>
-                </span>
-                <span class="text">Leaderboard</span>
-              </a>
-            </li>
-            <li class="list-item" style="--color: #ffa117">
-              <a href="gamepage.html">
-                <span class="icon">
-                  <ion-icon name="car-outline"></ion-icon>
-                </span>
-                <span class="text">Play</span>
-              </a>
-            </li>
-            <li class="list-item" style="--color: #0fc70f">
-              <a href="#">
-                <span class="icon">
-                  <ion-icon name="call-outline"></ion-icon>
-                </span>
-                <span class="text">Contact</span>
-              </a>
-            </li>
-            <li class="list-item" style="--color: #2196f3">
-              <a href="profile.html">
-                <span class="icon">
-                  <ion-icon name="grid-outline"></ion-icon>
-                </span>
-                <span class="text">Profile</span>
-              </a>
-            </li>
-          </ul>
-        </div>
-      </aside>
 
-      <main>
-        <div class="card">
-          <img src="img/Kimi-Riakkonen.jpg" style="width:100%">
-          <h1>Player1</h1>
-          <p class="title">level 999</p>
-          <p>F1</p>
-          <img src="img/f1.png" class="racingcar">
-      </main>
-    </div>
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AI86</title>
+  <link rel="stylesheet" href="css/index.css" />
+  <link rel="stylesheet" href="css/profile.css" />
+  <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+</head>
 
-    <script src="js/index.js"></script>
-  </body>
+<body>
+  <div class="main">
+    <aside>
+      <div class="navigation">
+        <div class="menu-toggle"></div>
+        <ul class="list">
+          <li class="list-item" style="--color: #f44336">
+            <a href="lobby.html">
+              <span class="icon">
+                <ion-icon name="home-outline"></ion-icon>
+              </span>
+              <span class="text">Home</span>
+            </a>
+          </li>
+          <li class="list-item" style="--color: #b145e9">
+            <a href="leaderboard.html">
+              <span class="icon">
+                <ion-icon name="medal-outline"></ion-icon>
+              </span>
+              <span class="text">Leaderboard</span>
+            </a>
+          </li>
+          <li class="list-item" style="--color: #ffa117">
+            <a href="gamepage.html">
+              <span class="icon">
+                <ion-icon name="car-outline"></ion-icon>
+              </span>
+              <span class="text">Play</span>
+            </a>
+          </li>
+          <li class="list-item" style="--color: #0fc70f">
+            <a href="#">
+              <span class="icon">
+                <ion-icon name="call-outline"></ion-icon>
+              </span>
+              <span class="text">Contact</span>
+            </a>
+          </li>
+          <li class="list-item" style="--color: #2196f3">
+            <a href="profile.html">
+              <span class="icon">
+                <ion-icon name="grid-outline"></ion-icon>
+              </span>
+              <span class="text">Profile</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </aside>
+
+    <main>
+      <div class="card">
+        <img src="img/Kimi-Riakkonen.jpg" style="width:100%">
+        <h1>Player1</h1>
+        <p class="title">level 999</p>
+        <p>F1</p>
+        <img src="img/f1.png" class="racingcar">
+        <select name="carColor" id="carColor">
+          <option value="red">red</option>
+          <option value="green">green</option>
+          <option value="blue">blue</option>
+          <option value="purple">purple</option>
+          <option value="yellow">yellow</option>
+        </select>
+    </main>
+  </div>
+  <script src="js/game.js"></script>
+  <script src="js/index.js"></script>
+</body>
+
 </html>

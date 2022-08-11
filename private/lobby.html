@@ -73,7 +73,7 @@
                 <h1><i class="fas fa-smile"></i> AI86</h1>
               </header>
               <main class="join-main">
-                <form action="chat.html">
+                <form action="" onsubmit="checkrooms(this.form); return false;">
                   <div class="form-control">
                     <label for="username">Username</label>
                     <input
@@ -86,16 +86,18 @@
                   </div>
                   <div class="form-control">
                     <label for="room">Room</label>
-                    <select name="room" id="room">
+                    <input name="room" id="room">
+                    <!-- <select name="room" id="room">
                       <option value="JavaScript">JavaScript</option>
                       <option value="Python">Python</option>
                       <option value="PHP">PHP</option>
                       <option value="C#">C#</option>
                       <option value="Ruby">Ruby</option>
                       <option value="Java">Java</option>
-                    </select>
+                    </select> -->
                   </div>
-                  <button type="submit" class="btn">Join Chat</button>
+                  <button class="btn" id="ChatLink">Join Here</button>
+                  <button class="btn">Create Room</button>
                 </form>
               </main>
             </div>
@@ -107,9 +109,11 @@
     </div>
   </div>
   <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+  <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/qs/6.11.0/qs.min.js" integrity="sha512-/l6vieC+YxaZywUhmqs++8uF9DeMvJE61ua5g+UK0TuHZ4TkTgB1Gm1n0NiA86uEOM9JJ6JUwyR0hboKO0fCng==" crossorigin="anonymous" referrerpolicy="no-referrer"></script> -->
   <script src="/socket.io/socket.io.js"></script> 
-  <script src="js/index.js"></script>
   <script src="js/socketIO/main.js"></script>
+  <script src="js/index.js"></script>
+
  
 </body>
 
