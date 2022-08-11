@@ -51,9 +51,10 @@ document.querySelector('#use').addEventListener("click", async()=>{
   for(let i = 0; i < result.length; i++){
     if(ai==result[i][0]){
     found = result[i][1]
-    }else{
-      document.querySelector("#saveerr").innerHTML = `you dont save this AI`
     }
+    // else{
+    //   document.querySelector("#saveerr").innerHTML = `you dont save this AI`
+    // }
   }
   const data = JSON.stringify(found);
   for (let i = 0; i < cars.length; i++) {
@@ -172,9 +173,9 @@ async function animate(time) {
           showtime = lap
           second = (showtime / 1000) % 60;
           minute = (showtime / 1000 / 60) % 60;
-          wintime =  `${Math.floor(minute)} m ${(Math.floor(second) % 60)} s ${(showtime % 1000)}`
-          document.querySelector('#playertime').innerHTML = `player lap time: ${wintime}`
-   
+          wintime =  {time:`${Math.floor(minute)} m ${(Math.floor(second) % 60)} s ${(showtime % 1000)}`}
+          document.querySelector('#playertime').innerHTML = `player lap time: ${wintime.time}`
+          console.log(wintime)
           await fetch('/leaderboard',{
             method: 'POST',
             headers: {
@@ -211,7 +212,7 @@ async function animate(time) {
 
   carCtx.save();
 
-  road.draw(carCtx);
+  // road.draw(carCtx);
   player.draw(carCtx);
   
   carCtx.globalAlpha = 0.2;
