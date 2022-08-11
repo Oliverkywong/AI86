@@ -12,7 +12,7 @@ class Car {
     this.angle = 0;
     this.damaged = false;
     this.win = false;
-    this.check = true;
+    this.check = false;
     this.cheat = false;
 
     this.useBrain = controlType == "AI";
@@ -44,14 +44,17 @@ class Car {
   update(roadBorders, player, winborder, checkborder, cheatborder) {
     this.polygon = this.#createPolygon();
     this.cheat = this.#checkcheat(cheatborder);
-
-    if(!this.cheat){
-      this.check = this.#checkcheck(checkborder);
-      if(this.check){
+    // console.log("cheat"+this.cheat)
+    // console.log("check"+this.check)
+    // console.log("win"+this.win)
+    // if(!this.cheat){
+      // this.check = this.#checkcheck(checkborder);
+      if(!this.check){
         this.win = this.#checkwin(winborder);
-        this.check = false
+        // this.win = this.#checkwin(winborder);
+        // this.check = false
       }
-    }
+    // }
     if (!this.damaged) {
       this.#move();
       this.damaged = this.#assessDamage(roadBorders, player);
@@ -71,28 +74,67 @@ class Car {
         this.controls.forward = outputs[0];
         this.controls.left = outputs[1];
         this.controls.right = outputs[2];
-        // this.controls.reverse = outputs[3];
+        this.controls.reverse = outputs[3];
       }
     }
   }
 
   #checkwin(winborder){
-    if(polysIntersect(this.polygon, winborder)){
+    const touch = getIntersection(
+      {x:this.x,y:this.y-3},
+      {x:this.x-3,y:this.y},
+      winborder[0],
+      winborder[1],
+    );
+    if (touch) {
       return true;
+    }else{
+      return false
     }
   }
-
   #checkcheck(checkborder){
-    if(polysIntersect(this.polygon, checkborder)){
+    const touch = getIntersection(
+      {x:this.x,y:this.y-this.height},
+      {x:this.x-this.width,y:this.y},
+      checkborder[0],
+      checkborder[1],
+    );
+    if (touch) {
       return true;
+    }else{
+      return false
     }
   }
-
   #checkcheat(cheatborder){
-    if(polysIntersect(this.polygon, cheatborder)){
-      return true;
-    }
+        const touch = getIntersection(
+          {x:this.x,y:this.y-this.height},
+          {x:this.x-this.width,y:this.y},
+          cheatborder[0],
+          cheatborder[1],
+        );
+        if (touch) {
+          return true;
+        }else{
+          return false
+        }
   }
+  // #checkwin(winborder){
+  //   if(polysIntersect(this.polygon, winborder)){
+  //     return true;
+  //   }
+  // }
+
+  //   #checkcheck(checkborder){
+  //   if(polysIntersect(this.polygon, checkborder)){
+  //     return true;
+  //   }
+  // }
+
+  // #checkcheat(cheatborder){
+  //   if(polysIntersect(this.polygon, cheatborder)){
+  //     return true;
+  //   }
+  // }
 
   #assessDamage(roadBorders, player) {
     for (let i = 0; i < roadBorders.length; i++) {

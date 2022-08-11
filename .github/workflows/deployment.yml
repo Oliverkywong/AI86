@@ -47,6 +47,8 @@ jobs:
          command: |
            cd AI86
            git pull 
+           yarn knex migrate:latest
+           yarn knex seed:run 
            forever restart 0
          host: 18.136.98.33
          user: ubuntu
