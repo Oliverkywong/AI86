@@ -27,7 +27,7 @@ function generateCars(N) {
   return cars;
 }
 
-const N = 100;
+const N = 10;
 const cars = generateCars(N);
 let bestCar = cars[0];
 let carcount = 0
@@ -174,21 +174,14 @@ async function animate(time) {
           minute = (showtime / 1000 / 60) % 60;
           wintime =  `${Math.floor(minute)} m ${(Math.floor(second) % 60)} s ${(showtime % 1000)}`
           document.querySelector('#playertime').innerHTML = `player lap time: ${wintime}`
-          
-
-          // console.log(req.session['name'])
-          // const promise1 = req.session['name']
-          // const promise2 = wintime
-          // Promise.all([promise1, promise2]).then(async(values) => {
-            await fetch('/leaderboard',{
+   
+          await fetch('/leaderboard',{
             method: 'POST',
             headers: {
               'Content-Type': 'application/json'
             },
             body: JSON.stringify(wintime)
           })
-          // });
-
         }
       }
     }
