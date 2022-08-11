@@ -1,5 +1,7 @@
 const carCanvas = document.getElementById("carCanvas");
 const networkCanvas = document.getElementById("networkCanvas");
+const carColor = document.getElementById("carColor").value;
+console.log(carColor);
 networkCanvas.width = 500;
 networkCanvas.height = 500;
 
@@ -15,7 +17,7 @@ const networkCtx = networkCanvas.getContext("2d");
 const road = new Road();
 
 const player = [
-  new Car(100, 550, 30, 50, "KEYS", 10, "yellow")
+  new Car(100, 550, 30, 50, "KEYS", 10, `"${carColor}"`)
 ];
 
 function generateCars(N) {
