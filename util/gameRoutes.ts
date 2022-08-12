@@ -13,6 +13,7 @@ gameRoutes.use(express.json())
 const GameResult = new gameService(knex)
 export const GameController = new gameController(GameResult)
 
+// Get ranking
 gameRoutes.post('/game/ranking', GameController.ranking)
 
 let name;
@@ -41,19 +42,37 @@ gameRoutes.get('/traincar', async (req, res) => {
 
 gameRoutes.post('/traincar', async (req, res) => {
   try {
+    // let bestAI = JSON.parse(await fs.promises.readFile(file, 'utf8'));
+
+    // if (bestAI.length != 0) {
+    //   for (let i = 0; i < bestAI.length; i++) {
+    //     console.log(req.body[0], bestAI[i][0])
+    //     if (req.body[0] == bestAI[i][0]) {
+    //       bestAI.splice(i, 1)
+    //       bestAI.push(req.body);
+    //       await fs.promises.writeFile(file, JSON.stringify(bestAI));
+    //     } else {
+    //       bestAI.push(req.body);
+    //       await fs.promises.writeFile(file, JSON.stringify(bestAI));
+    //       i=bestAI.length
+    //     }
+    //   }
+    // } else {
+    //   bestAI.push(req.body);
+    //   await fs.promises.writeFile(file, JSON.stringify(bestAI));
+    // }
     let bestAI = JSON.parse(await fs.promises.readFile(file, 'utf8'));
 
     if (bestAI.length != 0) {
-      for (let i = 0; i < bestAI.length; i++) {
-        console.log(req.body[0], bestAI[i][0])
-        if (req.body[0] == bestAI[i][0]) {
-          bestAI.splice(i, 1)
-          bestAI.push(req.body);
+      for (const ai of bestAI) {
+        if (ai[0] == req.body[0]) {
+          bestAI.splice(bestAI.indexOf(ai), 1, req.body)
           await fs.promises.writeFile(file, JSON.stringify(bestAI));
+          return
         } else {
-          bestAI.push(req.body);
+          bestAI.push(req.body)
           await fs.promises.writeFile(file, JSON.stringify(bestAI));
-          i=bestAI.length
+          return
         }
       }
     } else {
@@ -70,7 +89,7 @@ gameRoutes.post('/leaderboard', async (req, res) => {
   try {
     let time = req.body.time
     let playerid = req.session['player_id']
-    await knex.insert({ playerID: playerid, car_id: 0, racetime: time, map: 'map'}).into("leaderboard")
+    await knex.insert({ playerID: playerid, car_id: 0, racetime: time, map: 'map' }).into("leaderboard")
     res.json({ register: true, result: ['register success'] })
   } catch (err) {
     logger.error(err)

@@ -3,7 +3,7 @@ import { Knex } from "knex";
 
 export class gameService{
     constructor(private knex:Knex){}
-
+    // Select
     gameRanking = async () => {
         let result = await this.knex.select('*').from('leaderboard').orderBy('racetime')
         if (result.length > 0){
@@ -11,5 +11,14 @@ export class gameService{
         }else{
             return false;
         }
+    };
+    // gameCarStyle = async () => {
+    //     let result = await this.knex.select('*').from('')
+    // };    
+
+    // Insert
+    createCar = async (model: string, color: string) => {
+        await this.knex("car").insert({ model: model, color: color})
     }
+
 }

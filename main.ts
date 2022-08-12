@@ -31,11 +31,64 @@ app.use(
   })
 );
 
+app.use(express.static("public"));
 // Routes
 app.use(userRoutes);
 app.use(gameRoutes);
 
-app.use(express.static("public"));
+// let rooms = {};
+
+// function makeid(length:number) {
+//   let  result = '';
+//   let  num= '0123456789';
+//   let  Length = num.length;
+//   for ( let  i = 0; i < length; i++ ) {
+//      result += num.charAt(Math.floor(Math.random() * Length));
+//   }
+//   return result;
+// }
+
+// let game = io.of('/game')
+// game.on('connection', function (socket) {
+  // socket.on('start', function () {
+  //   let roomid = makeid(4)
+  //   rooms['id'] = roomid
+  //   socket.emit('roomid', roomid)
+
+  //   socket.join(roomid)
+  //   // socket.number = 1
+  //   socket.emit('init', 1)
+  // })
+
+  // socket.on('join', function (roomid) {
+  //   const room = io.sockets.adapter.rooms[roomid]
+  //   let allusers;
+  //   if (room) {
+  //     allusers = room.sockets;
+  //   }
+  //   let numusers = 0
+  //   if (allusers) {
+  //     numusers = Object.keys(allusers).length
+  //   }
+
+  //   if (numusers===0){
+  //     socket.emit('unknown')
+  //     return;
+  //   }else if (numusers > 1){
+  //     socket.emit('full')
+  //     return;
+  //   }
+  //   rooms['id'] = roomid
+  //   socket.join(roomid)
+  //   // socket.number = 2
+  //   socket.emit('init', 2)
+  // })
+  // socket.emit('otherplayer', {x:10, y:10})
+//   socket.on('playerlocation', (location) =>  {
+//     socket.emit('remoteplayer', location)
+//     // console.log(location)
+//   })
+// })
 
 // User Related
 

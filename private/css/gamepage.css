@@ -29,6 +29,7 @@ button:hover {
 
 #carCanvas {
   background: lightgray;
+  display: none;
 }
 
 .hidden {
@@ -284,4 +285,10 @@ ul li.active a .text {
   margin: 20px;
   width: 200px;
   height: 100px;
+}
+
+#gameroom{
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }

@@ -5,6 +5,7 @@
   <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
   <link rel="stylesheet" href="css/gamepage.css">
   <link rel="stylesheet" href="css/test.css">
+  
 </head>
 
 <body>
@@ -55,6 +56,12 @@
       </ul>
     </div>
   </aside>
+  <div id="gameroom">
+    <button id="start" type="submit">Start</button>
+    <input id="room" type="text" placeholder="game room">
+    <button id="join" type="submit">Join</button>
+  </div>
+  <span id="showroom"></span>
     <canvas id="carCanvas"></canvas>
     <div id="verticalButtons">
       <button id="save">💾</button>
@@ -75,7 +82,6 @@
           <option value="AI05">AI05</option>
         </select>
 
-      <button id="del">🗑️</button>
       <button id="network">net</button>
       <button id="prevcar">Previous car</button>
       <button id="followingcar">Following car</button>
@@ -94,6 +100,7 @@
     <script src="js/road.js"></script>
     <script src="js/controls.js"></script>
     <script src="js/car.js"></script>
+    <script src="/socket.io/socket.io.js"></script>
     <script src="js/game.js"></script>
     <script src="js/index.js"></script>
 </body>
