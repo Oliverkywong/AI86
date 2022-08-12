@@ -3,11 +3,7 @@ window.onload = console.log(carColor);
 
 const carCanvas = document.getElementById("carCanvas");
 const networkCanvas = document.getElementById("networkCanvas");
-<<<<<<< HEAD
-=======
-// const carColor = document.getElementById("carColor").value;
-// console.log(carColor);
->>>>>>> 7c1ea1cf8840e188aeab0797bc3b7bd41f65725d
+
 networkCanvas.width = 500;
 networkCanvas.height = 500;
 
@@ -24,11 +20,10 @@ const networkCtx = networkCanvas.getContext("2d");
 
 const road = new Road();
 
-<<<<<<< HEAD
-const player = new Car(100, 550, 30, 50, "KEYS", 5, carColor);
-=======
+
+
 const player = new Car(100, 550, 15, 25, "KEYS", 5, "yellow")
->>>>>>> 7c1ea1cf8840e188aeab0797bc3b7bd41f65725d
+
   // new Car(1000, 620, 30, 50, "KEYS", 10, "yellow")
 
 function generateCars(N) {
