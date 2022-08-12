@@ -1,7 +1,9 @@
-body {
-  margin: 0;
+
+body{
+background-image: url(../img/background_3.jfif);
+}
+.container {
   background: black;
-  background-image: url(../img/background_3.jfif);
   background-repeat: no-repeat;
   background-size: 100%;
   overflow: hidden;
@@ -10,21 +12,35 @@ body {
   align-items: center;
 }
 
+
 #verticalButtons {
   display: flex;
   flex-direction: column;
+  --net: hsl(200,100%,50%);
 }
 
-button {
+
+/* button {
+  background: black;
   border: none;
   border-radius: 5px;
   padding: 5px 5px 7px 5px;
   margin: 2px;
   cursor: pointer;
-}
-button:hover {
+  color: #fff;
+  text-shadow:
+      0 0 7px #fff,
+      0 0 10px #fff,
+      0 0 21px #fff,
+      0 0 42px #0fa,
+      0 0 82px #0fa,
+      0 0 92px #0fa,
+      0 0 102px #0fa,
+      0 0 151px #0fa;
+} */
+/* button:hover {
   background: blue;
-}
+} */
 
 #networkCanvas {
   background: black;
@@ -42,25 +58,6 @@ button:hover {
 
 .hidden {
 	display: none;
-}
-
-#gametime{
-  background: #0f3854;
-  background: radial-gradient(ellipse at center,  #0a2e38  0%, #000000 70%);
-  background-size: 100%;
-  /* ---------------- 
-  https://codepen.io/gau/pen/LjQwGp*/
-  position: absolute;
-  font-family: 'Share Tech Mono', monospace;
-  font-size: 1.5rem;
-    color: #ffffff;
-    text-align: center;
-    position: absolute;
-    left: 50%;
-    top: 75%;
-    transform: translate(-50%, -50%);
-    color: #daf6ff;
-    text-shadow: 0 0 20px rgba(10, 175, 230, 1),  0 0 20px rgba(10, 175, 230, 0);
 }
 
 
@@ -272,13 +269,28 @@ ul li.active a .text {
 /* Change the background color of the dropdown button when the dropdown content is shown */
 .dropdown:hover #use {background-color: #3e8e41;}
 
-#realtimespeed{
-  background: #0f3854;
-  background: radial-gradient(ellipse at center,  #0a2e38  0%, #000000 70%);
-  background-size: 100%;
+#gametime{
+  background: radial-gradient(ellipse at center,  #0a2e38  0%, #000000 200%);
+  /* ---------------- 
+  https://codepen.io/gau/pen/LjQwGp*/
   position: absolute;
   font-family: 'Share Tech Mono', monospace;
-  font-size: 1.5rem;
+  font-size: 2.5rem;
+    color: #ffffff;
+    text-align: center;
+    position: absolute;
+    left: 50%;
+    top: 75%;
+    transform: translate(-50%, -50%);
+    color: #daf6ff;
+    text-shadow: 0 0 20px rgba(10, 175, 230, 1),  0 0 20px rgba(10, 175, 230, 0);
+}
+
+#realtimespeed{
+  background: radial-gradient(ellipse at center,  #0a2e38  0%, #000000 200%);
+  position: absolute;
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 2.5rem;
     color: #ffffff;
     text-align: center;
     position: absolute;
@@ -289,19 +301,15 @@ ul li.active a .text {
     text-shadow: 0 0 20px rgba(10, 175, 230, 1),  0 0 20px rgba(10, 175, 230, 0);
 
 }
-#container {
-  margin: 20px;
-  width: 200px;
-  height: 100px;
-}
+
 
 #playertime{
  
   color: white;
   font-family: 'Share Tech Mono', monospace;
-  background: radial-gradient(ellipse at center,  #43224b  00%, #000000 70%);
+  background: radial-gradient(ellipse at center,  #43224b  00%, #000000 90%);
   text-shadow: 0 0 60px rgba(204, 32, 204,1),  0 0 20px rgba(10, 175, 230, 0);
-  font-size: 1.5rem;
+  font-size: 2.5rem;
     position: absolute;
     left: 65%;
     top: 75%;
@@ -310,10 +318,11 @@ ul li.active a .text {
 #aitime{
   color: white;
   font-family: 'Share Tech Mono', monospace;
-  background: radial-gradient(ellipse at center,  #43224b  00%, #000000 70%);
+  background: radial-gradient(ellipse at center,  #43224b  00%, #000000 90%);
   text-shadow: 0 0 60px rgba(204, 32, 204,1),  0 0 20px rgba(10, 175, 230, 0);
-  font-size: 1.5rem;
+  font-size: 2.5rem;
     position: absolute;
     left: 65%;
     top: 80%;
 }
+
