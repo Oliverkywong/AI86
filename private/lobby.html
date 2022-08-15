@@ -1,93 +1,122 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AI86</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css?family=Montserrat"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+    <link rel="stylesheet" href="css/styles.css" />
+    <link rel="stylesheet" href="css/index.css" />
+    <!-- <link rel="stylesheet" href="css/chat.css" /> -->
+    <link
+      rel="stylesheet"
+      href="https://unicons.iconscout.com/release/v2.1.9/css/unicons.css"
+    />
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css" />
+  </head>
+  <style>
+    body,
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+      font-family: "Montserrat", sans-serif;
+    }
 
-<head>
-  <meta charset="UTF-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>AI86</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css" />
-  <link rel="stylesheet" href="css/styles.css" />
-  <link rel="stylesheet" href="css/index.css" />
-  <link rel="stylesheet" href="css/chat.css" />
-  <link rel="stylesheet" href="https://unicons.iconscout.com/release/v2.1.9/css/unicons.css" />
-</head>
+    .w3-row-padding img {
+      margin-bottom: 12px;
+    }
 
-<body>
-  <div class="main">
-    <aside>
-      <div class="navigation">
-        <div class="menu-toggle"></div>
-        <ul class="list">
-          <li class="list-item" style="--color: #f44336">
-            <a href="lobby.html">
+    /* Set the width of the sidebar to 120px */
+    .w3-sidebar {
+      width: 120px;
+      background: rgb(255, 253, 253);
+    }
+  </style>
+  <body>
+    <div class="main">
+      <div class="sidebar">
+        <nav class="w3-sidebar w3-bar-block w3-small w3-hide-small w3-center">
+          <!-- Avatar image in top left corner -->
+          <a
+            href="lobby.html"
+            class="w3-bar-item w3-button w3-padding-large w3-black"
+          >
+            <i class="fa fa-home w3-xxlarge"></i>
+            <p>Home</p>
+          </a>
+          <a
+            href="profile.html"
+            class="w3-bar-item w3-button w3-padding-large w3-hover-black"
+          >
+            <i class="fa fa-user w3-xxlarge"></i>
+            <p>Profile</p>
+          </a>
+          <a
+            href="leaderboard.html"
+            class="w3-bar-item w3-button w3-padding-large w3-hover-black"
+          >
+            <span class="icon">
+              <i class="fa fa-trophy w3-xxlarge"></i>
+            </span>
+            <p>Leaderboard</p>
+          </a>
+          <a
+            href="/"
+            class="w3-bar-item w3-button w3-padding-large w3-hover-black"
+          >
+            <form class="logout" action="/logout" method="POST">
               <span class="icon">
-                <ion-icon name="home-outline"></ion-icon>
+                <i class="fa fa-sign-out w3-xxlarge"></i>
               </span>
-              <span class="text">Home</span>
-            </a>
-          </li>
-          <li class="list-item" style="--color: #b145e9">
-            <a href="leaderboard.html">
-              <span class="icon">
-                <ion-icon name="medal-outline"></ion-icon>
-              </span>
-              <span class="text">Leaderboard</span>
-            </a>
-          </li>
-          <li class="list-item" style="--color: #ffa117">
-            <a href="gameLobby.html">
-              <span class="icon">
-                <ion-icon name="car-outline"></ion-icon>
-              </span>
-              <span class="text">Play</span>
-            </a>
-          </li>
-          <li class="list-item" style="--color: #0fc70f">
-            <a href="#">
-              <span class="icon">
-                <ion-icon name="call-outline"></ion-icon>
-              </span>
-              <span class="text">Contact</span>
-            </a>
-          </li>
-          <li class="list-item" style="--color: #2196f3">
-            <a href="profile.html">
-              <span class="icon">
-                <ion-icon name="grid-outline"></ion-icon>
-              </span>
-              <span class="text">Profile</span>
-            </a>
-          </li>
-        </ul>
+              <p>Logout</p>
+            </form>
+          </a>
+        </nav>
       </div>
-    </aside>
-    <!-- For format -->
-    <div class="container">
-      <div class="row full-height justify-content-center">
-        <div class="col-12 text-center align-self-center py-5">
-          <div class="section pb-5 pt-5 pt-sm-2 text-center">
-            <!-- Chat Login start -->
-            <div class="join-container">
-              <header class="join-header">
-                <h1><i class="fas fa-smile"></i> AI86</h1>
-              </header>
-              <main class="join-main">
-                <form action="" onsubmit="checkrooms(this.form); return false;">
-                  <div class="form-control">
-                    <label for="username">Username</label>
-                    <input
-                      type="text"
-                      name="username"
-                      id="username"
-                      placeholder="Enter username..."
-                      required
-                    />
-                  </div>
-                  <div class="form-control">
-                    <label for="room">Room</label>
-                    <input name="room" id="room">
-                    <!-- <select name="room" id="room">
+      <!-- For format -->
+      <div class="container">
+        <div class="row full-height justify-content-center">
+          <div class="col-12 text-center align-self-center py-5">
+            <div class="section pb-5 pt-5 pt-sm-2 text-center">
+              <!-- Chat Login start -->
+              <div class="join-container">
+                <header class="join-header">
+                  <h1><i class="fas fa-smile"></i> AI86</h1>
+                </header>
+                <main class="join-main">
+                  <form
+                    action=""
+                    onsubmit="checkrooms(this.form); return false;"
+                  >
+                    <div class="form-control">
+                      <label for="username">Username</label>
+                      <input
+                        type="text"
+                        name="username"
+                        id="username"
+                        placeholder="Enter username..."
+                        required
+                      />
+                    </div>
+                    <div class="form-control">
+                      <label for="room">Room</label>
+                      <input name="room" id="room" />
+                      <!-- <select name="room" id="room">
                       <option value="JavaScript">JavaScript</option>
                       <option value="Python">Python</option>
                       <option value="PHP">PHP</option>
@@ -95,26 +124,25 @@
                       <option value="Ruby">Ruby</option>
                       <option value="Java">Java</option>
                     </select> -->
-                  </div>
-                  <button class="btn" id="ChatLink">Join Here</button>
-                  <button class="btn">Create Room</button>
-                </form>
-              </main>
+                    </div>
+                    <button class="btn" id="ChatLink">Join Here</button>
+                    <button class="btn">Create Room</button>
+                  </form>
+                </main>
+              </div>
+              <!-- Chat end -->
             </div>
-            <!-- Chat end -->
-
           </div>
         </div>
       </div>
     </div>
-  </div>
-  <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
-  <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/qs/6.11.0/qs.min.js" integrity="sha512-/l6vieC+YxaZywUhmqs++8uF9DeMvJE61ua5g+UK0TuHZ4TkTgB1Gm1n0NiA86uEOM9JJ6JUwyR0hboKO0fCng==" crossorigin="anonymous" referrerpolicy="no-referrer"></script> -->
-  <script src="/socket.io/socket.io.js"></script> 
-  <script src="js/socketIO/main.js"></script>
-  <script src="js/index.js"></script>
-
- 
-</body>
-
+    <script
+      type="module"
+      src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"
+    ></script>
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/qs/6.11.0/qs.min.js" integrity="sha512-/l6vieC+YxaZywUhmqs++8uF9DeMvJE61ua5g+UK0TuHZ4TkTgB1Gm1n0NiA86uEOM9JJ6JUwyR0hboKO0fCng==" crossorigin="anonymous" referrerpolicy="no-referrer"></script> -->
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="js/socketIO/main.js"></script>
+    <script src="js/index.js"></script>
+  </body>
 </html>
