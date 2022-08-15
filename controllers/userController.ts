@@ -10,6 +10,7 @@ export class userController{
     		let email = req.body.email.trim()
     		let password = req.body.password.trim()
     		const userlist = await this.userservice.userLogin(email,password)
+			// console.log(userlist[0].email, userlist[0].id)
         
     		if (userlist == 1) {
     			res.json({ login: false, result: ['email incorrect'] })
@@ -19,6 +20,12 @@ export class userController{
                 req.session['isLogin'] = true
                 req.session['player_id'] = userlist[0].player_id
                 req.session['name'] = userlist[0].name
+				// console.log('user id: ',userlist[0].id)
+				req.session['users_id'] = userlist[0].id
+				// console.log('user ID:', userlist[0].id)
+				req.session['email'] = userlist[0].email
+				console.log('Session info ' + JSON.stringify(req.session))
+
     			res.json({ login: true, result: ['login success'] })
     		}
     	} catch (err) {

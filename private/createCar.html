@@ -12,7 +12,7 @@
         <p><img src="./img/F1.png" style="width:200px">F1</p>
         <p><img src="./img/fer.png" style="width:200px">FER</p>
     </div>
-    <form>
+    <form id="createCarForm">
         <select name="model" id="model">
             <option value="./img/F1.png">F1</option>
             <option value="./img/fer.png">FER</option>
@@ -22,7 +22,9 @@
             <option value="green">green</option>
             <option value="blue">blue</option>
         </select>
-        <button class="btn" id="submit">Create Car</button>
+        <button class="btn" id="createCar" type="submit" value="POST">Create Car</button>
     </form>
+
+    <script src="js/createCar.js"></script>
 </body>
 </html>

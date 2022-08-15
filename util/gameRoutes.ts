@@ -14,7 +14,12 @@ const GameResult = new gameService(knex)
 export const GameController = new gameController(GameResult)
 
 // Get ranking
-gameRoutes.post('/game/ranking',GameController.ranking)
+gameRoutes.post('/game/ranking', GameController.ranking)
+// Get owned car
+gameRoutes.post('/game/showCar', GameController.showCar)
+// Create car
+gameRoutes.post('/game/createCar', GameController.createCar)
+
 
 let name;
 
@@ -66,14 +71,14 @@ gameRoutes.post('/traincar', async (req, res) => {
   }
 })
 
-gameRoutes.post('/leaderboard', async (req, res) => {
-  try {
-    let time = req.body.time
-    let playerid = req.session['player_id']
-    await knex.insert({ playerID: playerid, car_id: 0, racetime: time, map: 'map'}).into("leaderboard")
-    res.json({ register: true, result: ['register success'] })
-  } catch (err) {
-    logger.error(err)
-    res.status(500).json('Internal Server Error')
-  }
-})
+// gameRoutes.post('/leaderboard', async (req, res) => {
+//   try {
+//     let time = req.body.time
+//     let playerid = req.session['player_id']
+//     await knex.insert({ playerID: playerid, car_id: 0, racetime: time, map: 'map'}).into("leaderboard")
+//     res.json({ register: true, result: ['register success'] })
+//   } catch (err) {
+//     logger.error(err)
+//     res.status(500).json('Internal Server Error')
+//   }
+// })

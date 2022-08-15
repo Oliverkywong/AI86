@@ -4,13 +4,14 @@ export class userService{
     constructor(private knex:Knex){}
 
     userLogin = async (email:string, password:string) => {
-        let result = await this.knex.select('player_id','name','email','password').from('users').where('email', email)
+        let result = await this.knex.select('id','player_id','name','email','password').from('users').where('email', email)
         if( result.length == 0 ){
             return 1;
         }else {
             if (await checkPassword(password, result[0]["password"])){
+                // console.log(result)
                 return result;
-            }else{
+            } else {
                 return 2;
             }
         }
