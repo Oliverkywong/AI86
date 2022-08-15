@@ -6,6 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>AI86</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css" />
   <link rel="stylesheet" href="css/index.css" />
   <link rel="stylesheet" href="css/profile.css" />
   <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
@@ -62,12 +63,13 @@
     </aside>
 
     <main>
-      <div class="card">
+      <div class="card" style="display: flex;">
         <img src="img/Kimi-Riakkonen.jpg" style="width:100%">
         <h1>Player1</h1>
         <p class="title">level 999</p>
         <p>F1</p>
-        <img src="img/f1.png" class="racingcar">
+        <img src="img/f1.png" class="carPhoto" style="align-items:center;">
+        
         <form>
           <select name="carColor" id="carColor">
             <option value="red">red</option>
@@ -78,7 +80,33 @@
           </select>
           <button id="submit">Submit</button>
         </form>
+        <form id="createCarForm">
+          <select name="model" id="model">
+            <option value="./img/F1.png">F1</option>
+            <option value="./img/fer.png">FER</option>
+            <option value="./img/lambo.png">LAMBO</option>
+            <option value="./img/wolf.png">WOLF</option>
+            <option value="./img/dragon.png">DRAGON</option>
+          </select>
+          <select name="color" id="color">
+            <option value="red">Red</option>
+            <option value="green">Green</option>
+            <option value="blue">Blue</option>
+            <option value="orange">Orange</option>
+            <option value="purple">Purple</option>
+            <option value="white">White</option>
+            <option value="black">Black</option>
+            <option value="silver">Silver</option>
+            <option value="pick">Pink</option>
+          </select>
+          <button class="btn" id="createCar" type="submit" value="POST">Create Car</button>
+        </form>
+      </div>
+      <div class="container">
+        <div class="row" id="ownedCar"></div>
+      </div>
     </main>
+  
   </div>
   <script src="js/profile.js"></script>
   <script src="js/index.js"></script>

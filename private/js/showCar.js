@@ -23,7 +23,7 @@ function getOwnedCar () {
     .then ((data) => {
         for (let i = 0; i < data.length; i++) {
             showCar.innerHTML +=
-            `<div>
+            `<div class="card">
                 <p>Car info</p>
                 <div id="id">ID: ${data[i][0].id}</div>
                 <div id="model">Model: ${data[i][0].model}</div>
