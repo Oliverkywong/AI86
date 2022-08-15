@@ -5,7 +5,7 @@ body {
   font-weight: 300;
   font-size: 15px;
   line-height: 1.7;
-  color: #c4c3ca;
+  color: #000000;
   background-color: #1f2029;
   overflow-x: hidden;
 }
@@ -18,7 +18,7 @@ a:hover {
   text-decoration: none;
 }
 .link {
-  color: #c4c3ca;
+  color: #000000;
 }
 .link:hover {
   color: #ffeba7;
@@ -159,7 +159,7 @@ h6 span {
   line-height: 22px;
   letter-spacing: 0.5px;
   outline: none;
-  color: #c4c3ca;
+  color: #000000;
   background-color: #1f2029;
   border: none;
   -webkit-transition: all 200ms linear;
@@ -186,25 +186,25 @@ h6 span {
 }
 
 .form-group input:-ms-input-placeholder {
-  color: #c4c3ca;
+  color: #000000;
   opacity: 0.7;
   -webkit-transition: all 200ms linear;
   transition: all 200ms linear;
 }
 .form-group input::-moz-placeholder {
-  color: #c4c3ca;
+  color: #000000;
   opacity: 0.7;
   -webkit-transition: all 200ms linear;
   transition: all 200ms linear;
 }
 .form-group input:-moz-placeholder {
-  color: #c4c3ca;
+  color: #000000;
   opacity: 0.7;
   -webkit-transition: all 200ms linear;
   transition: all 200ms linear;
 }
 .form-group input::-webkit-input-placeholder {
-  color: #c4c3ca;
+  color: #000000;
   opacity: 0.7;
   -webkit-transition: all 200ms linear;
   transition: all 200ms linear;
