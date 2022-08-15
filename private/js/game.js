@@ -2,11 +2,7 @@
 
 const carCanvas = document.getElementById("carCanvas");
 const networkCanvas = document.getElementById("networkCanvas");
-<<<<<<< HEAD
-=======
-// const carColor = document.getElementById("carColor").value;
-// console.log(carColor);
->>>>>>> 7c1ea1cf8840e188aeab0797bc3b7bd41f65725d
+
 networkCanvas.width = 500;
 networkCanvas.height = 500;
 
@@ -25,11 +21,8 @@ networkCanvas.height = 500;
 
   const road = new Road();
 
-<<<<<<< HEAD
-const player = new Car(100, 550, 30, 50, "KEYS", 5, carColor);
-=======
-const player = new Car(100, 550, 15, 25, "KEYS", 5, "yellow")
->>>>>>> 7c1ea1cf8840e188aeab0797bc3b7bd41f65725d
+  const player = new Car(100, 550, carwidth, carheight, "KEYS", 5, "yellow")
+
   // new Car(1000, 620, 30, 50, "KEYS", 10, "yellow")
 
   const N = 50;
@@ -104,7 +97,8 @@ const player = new Car(100, 550, 15, 25, "KEYS", 5, "yellow")
     }
   });
 
-  animate();
+  setTimeout(()=>{animate()}, 3000 )
+  // animate();
 
   async function animate(time) {
     // const socket = io.connect('/game')
@@ -183,7 +177,7 @@ const player = new Car(100, 550, 15, 25, "KEYS", 5, "yellow")
     }
 
     carCtx.save();
-    otherplayer.draw(carCtx)
+    // otherplayer.draw(carCtx)
     // road.draw(carCtx);
     player.draw(carCtx);
 
@@ -200,19 +194,4 @@ const player = new Car(100, 550, 15, 25, "KEYS", 5, "yellow")
     Visualizer.drawNetwork(networkCtx, bestCar.brain);
     requestAnimationFrame(animate);
   }
-// }
 
-// document.querySelector("#start").addEventListener("click", function () {
-//   socket.emit("start");
-//   init();
-// })
-
-// document.querySelector("#join").addEventListener("click", function () {
-//   const room = document.querySelector("#gameroom").value
-//   socket.emit("join", room);
-//   init();
-// })
-
-// socket.on('gameroom', (roomid)=>{
-//   document.querySelector("#showroom").innerHTML = roomid
-// })
