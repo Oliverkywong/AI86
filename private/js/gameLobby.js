@@ -3,5 +3,5 @@ document.querySelector('#map1').addEventListener('click', () => {
 })
 
 document.querySelector('#map2').addEventListener('click', () => {
-    window.location.href = '../gamepage.html?123'
+    window.location.href = '../gamepage.html?map=2'
 })

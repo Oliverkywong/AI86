@@ -8,9 +8,10 @@ export class gameService{
     // Select
     // Get leaderBoard data
     gameRanking = async () => {
-        let result = await this.knex.select('*').from('leaderboard').orderBy('racetime')
+        let result = await this.knex.raw(`
+        SELECT player_id, min(racetime) FROM leaderboard GROUP BY player_id ORDER BY min(racetime) LIMIT 10 `)
         if (result.length > 0){
-            console.log(result)
+            // console.log(result)
             return result;
         }else{
             return false;

@@ -15,15 +15,32 @@ networkCanvas.height = 500;
   let win = [];
   let carwidth = 30
   let carheight = 50
+  let playerx = 100
+  let playery = 550
+  let AIx = 130
+  let AIy = 550
   let model = "../img/fer.png";
   const carCtx = carCanvas.getContext("2d");
   const networkCtx = networkCanvas.getContext("2d");
+  let map = "url('../img/FHrH8TJUcAAetQB_1280jpg.jpg')"
+  let mapborad = 1
 
-  const road = new Road();
+  let urlParams = new URLSearchParams(window.location.search);
+  if(urlParams.get('map')==2){
+    mapborad = 2
+    map = "url('../img/STP58.jpg')"
+    carwidth = 15
+    carheight = 25
+    playerx = 80
+    playery = 550
+    AIx = 100
+    AIy = 550
+  }
+  
 
-  const player = new Car(100, 550, carwidth, carheight, "KEYS", 5, "yellow", model)
+  const road = new Road(mapborad);
 
-  // new Car(1000, 620, 30, 50, "KEYS", 10, "yellow")
+  const player = new Car(playerx, playery, carwidth, carheight, "KEYS", 5, "yellow", model)
 
   const N = 50;
   const cars = generateCars(N);
@@ -32,7 +49,7 @@ networkCanvas.height = 500;
   function generateCars(N) {
     const cars = [];
     for (let i = 1; i <= N; i++) {
-      cars.push(new Car(130, 550, carwidth, carheight, "AI", 5));
+      cars.push(new Car(AIx, AIy, carwidth, carheight, "AI", 5));
     }
     return cars;
   }
@@ -120,7 +137,7 @@ networkCanvas.height = 500;
 
     document.querySelector('#gametime').innerHTML = `Time:  ${Math.floor(minute)} m ${(Math.floor(second) % 60)} s ${(showtime % 1000)}`;
 
-    document.getElementById("carCanvas").style.background = "url('../img/FHrH8TJUcAAetQB_1280jpg.jpg')"
+    document.getElementById("carCanvas").style.background = map
     carCanvas.width = 1280;
     carCanvas.height = 940;
 
@@ -142,13 +159,22 @@ networkCanvas.height = 500;
           minute = (showtime / 1000 / 60) % 60;
           wintime = { time: `${Math.floor(minute)} m ${(Math.floor(second) % 60)} s ${(showtime % 1000)}` }
           document.querySelector('#playertime').innerHTML = `player lap time: ${wintime.time}`
-          await fetch('/leaderboard', {
-            method: 'POST',
-            headers: {
-              'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(wintime)
-          })
+          // await fetch('/leaderboard', {
+          //   method: 'POST',
+          //   headers: {
+          //     'Content-Type': 'application/json'
+          //   },
+          //   body: JSON.stringify(wintime)
+          // })
+          Promise.all([mapborad, wintime]).then(async (values) => {
+            await fetch('/leaderboard', {
+              method: 'POST',
+              headers: {
+                'Content-Type': 'application/json'
+              },
+              body: JSON.stringify(values)
+            })
+          });
         }
       }
     }

@@ -9,7 +9,7 @@ import { formatMessage } from "./util/moment";
 import { userJoin, getCurrentUser, userLeave, getRoomUsers, roomCreateOrJoin } from "./util/userSocket"
 import { userRoutes } from "./util/userRoutes";
 import { gameRoutes } from "./util/gameRoutes";
-import { knex } from "./util/middlewares";
+import { isLogin, knex } from "./util/middlewares";
 import { userService } from "./services/userService";
 import { userController } from "./controllers/userController";
 import { createUserRoutes } from "./util/userRoutes";
@@ -98,7 +98,7 @@ app.use(createUserRoutes(usercontroller));
 
 
 // Move to bottom if need login
-app.use(express.static("private"));
+app.use(isLogin,express.static("private"));
 
 const port = process.env.PORT || 8989
 server.listen(port, function () {
