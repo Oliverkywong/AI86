@@ -11,4 +11,4 @@ SELECT * FROM users WHERE email = 'abc@gmail.com'
 
 SELECT * FROM leaderboard ORDER BY racetime LIMIT 10
 
-SELECT player_id, min(racetime) FROM leaderboard GROUP BY player_id ORDER BY min(racetime) LIMIT 10 
+SELECT player_id,map,car_id, min(racetime) as racetime FROM leaderboard GROUP BY player_id, map,car_id ORDER BY min(racetime) LIMIT 10 

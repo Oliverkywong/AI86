@@ -24,12 +24,12 @@ function getRanking() {
 
     .then(response => response.json())
     .then((data) => {
-        // console.log('Success:', data[1]);
+        console.log( data);
         for (let i =0; i < data.length; i++) {
             document.getElementById('leaderboard').innerHTML +=
 
             `<div class="leaderBoardContent">
-                <div>Player ID: ${data[i].playerID}</div>
+                <div>Player ID: ${data[i].player_id}</div>
                 <div>Map: ${data[i].map}</div>
                 <div>Best Laptime: ${data[i].racetime}</div>
                 <div>Car ID: ${data[i].car_id}</div>

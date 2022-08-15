@@ -19,7 +19,7 @@ function login() {
 			let json = await res.json()
 			document.querySelector('#loginform').reset()
 			if(json.login){
-				window.location.replace('lobby.html')
+				window.location.replace('gameLobby.html')
 			}else {
 				document.querySelector('#loginstatus').innerHTML = json.result
 			}

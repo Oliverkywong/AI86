@@ -8,7 +8,7 @@ export function createUserRoutes(usercontroller: userController) {
 
 	userRoutes.post('/login',usercontroller.login)
 	userRoutes.post('/register',usercontroller.register)
-	userRoutes.post('/logout',usercontroller.logout)
+	userRoutes.get('/logout',usercontroller.logout)
 	
 	return userRoutes
 }

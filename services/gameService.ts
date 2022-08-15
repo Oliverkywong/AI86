@@ -1,18 +1,14 @@
 import { Knex } from "knex";
-// import { arrayBuffer } from "stream/consumers";
-// import { isLogin } from "../util/middlewares";
-// import { checkPassword, hashPassword } from "../util/hash";
 
 export class gameService{
     constructor(private knex:Knex){}
     // Select
     // Get leaderBoard data
     gameRanking = async () => {
-        let result = await this.knex.raw(`
-        SELECT player_id, min(racetime) FROM leaderboard GROUP BY player_id ORDER BY min(racetime) LIMIT 10 `)
-        if (result.length > 0){
-            // console.log(result)
-            return result;
+        let result = await this.knex.raw('SELECT player_id,map,car_id, min(racetime) as racetime FROM leaderboard GROUP BY player_id, map,car_id ORDER BY min(racetime) LIMIT 10 ')
+
+        if (result.rows.length > 0){
+            return result.rows;
         }else{
             return false;
         }
