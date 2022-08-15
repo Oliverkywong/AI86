@@ -328,8 +328,6 @@ body{
   
   .countdown {
     position: relative;
-    /* width: 400px;
-    height: 400px; */
     transform-style: preserve-3d;
     perspective: 1000px;
   }
