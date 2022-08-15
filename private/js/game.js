@@ -15,13 +15,13 @@ networkCanvas.height = 500;
   let win = [];
   let carwidth = 30
   let carheight = 50
-
+  let model = "../img/fer.png";
   const carCtx = carCanvas.getContext("2d");
   const networkCtx = networkCanvas.getContext("2d");
 
   const road = new Road();
 
-  const player = new Car(100, 550, carwidth, carheight, "KEYS", 5, "yellow")
+  const player = new Car(100, 550, carwidth, carheight, "KEYS", 5, "yellow", model)
 
   // new Car(1000, 620, 30, 50, "KEYS", 10, "yellow")
 

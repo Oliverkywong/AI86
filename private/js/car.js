@@ -1,5 +1,5 @@
 class Car {
-  constructor(x, y, width, height, controlType, maxSpeed = 3, color = "blue") {
+  constructor(x, y, width, height, controlType, maxSpeed = 3, color = "blue", model="../img/f1.png") {
     this.x = x;
     this.y = y;
     this.width = width;
@@ -25,7 +25,7 @@ class Car {
     this.controls = new Controls(controlType);
 
     this.img = new Image();
-    this.img.src = "../img/f1.png";
+    this.img.src = model
 
     this.mask = document.createElement("canvas");
     this.mask.width = width;
