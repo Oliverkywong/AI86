@@ -14,7 +14,7 @@ const GameResult = new gameService(knex)
 export const GameController = new gameController(GameResult)
 
 // Get ranking
-gameRoutes.post('/game/ranking', GameController.ranking)
+gameRoutes.get('/game/ranking', GameController.ranking)
 // Get owned car
 gameRoutes.post('/game/showCar', GameController.showCar)
 // Create car

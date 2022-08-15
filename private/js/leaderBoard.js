@@ -1,8 +1,9 @@
 // const { idText } = require("typescript");
 // const { id } = require("../../jest.config");
 
-function getRanking() {
-
+async function getRanking() {
+	const res = await fetch('/game/ranking')
+	const ranking = await res.json()
     // let res = fetch('http://localhost:8989/game/ranking', {
     //     method: 'POST',
     //     headers: {
@@ -14,28 +15,28 @@ function getRanking() {
     //     document.querySelector(`#${i}`).innerHTML = `<div>${res[i].playerID}</div>`
     // }
 
-    const response = window.fetch('http://localhost:8989/game/ranking', {
-        // learn more about this API here: https://graphql-pokemon2.vercel.app/
-        method: 'POST',
-        headers: {
-            'content-type': 'application/json;charset=UTF-8',
-        },
-    })
+    // const response = window.fetch('http://localhost:8989/game/ranking', {
+    //     // learn more about this API here: https://graphql-pokemon2.vercel.app/
+    //     method: 'POST',
+    //     headers: {
+    //         'content-type': 'application/json;charset=UTF-8',
+    //     },
+    // })
 
-    .then(response => response.json())
-    .then((data) => {
-        console.log( data);
-        for (let i =0; i < data.length; i++) {
+    // .then(response => response.json())
+    // .then((data) => {
+    //     console.log( data);
+        for (let i =0; i < ranking.length; i++) {
             document.getElementById('leaderboard').innerHTML +=
 
             `<div class="leaderBoardContent">
-                <div>Player ID: ${data[i].player_id}</div>
-                <div>Map: ${data[i].map}</div>
-                <div>Best Laptime: ${data[i].racetime}</div>
-                <div>Car ID: ${data[i].car_id}</div>
+                <div>Player ID: ${ranking[i].player_id}</div>
+                <div>Map: ${ranking[i].map}</div>
+                <div>Best Laptime: ${ranking[i].racetime}</div>
+                <div>Car ID: ${ranking[i].car_id}</div>
             </div>`
         }
-    })
+    // })
 }
 
 getRanking();

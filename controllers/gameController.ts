@@ -10,7 +10,7 @@ export class gameController{
     	try {
     		const rankingList = await this.gameService.gameRanking();
     		if (rankingList) {
-                console.log(rankingList);
+                // console.log(rankingList);
                 res.status(200).json(rankingList);
     		} else {
     			res.json({ status: "fail", result: ['error fail'] });
