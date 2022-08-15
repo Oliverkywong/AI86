@@ -1,78 +1,98 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width" />
+    <title>AI86</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css"
+    />
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css" />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css?family=Montserrat"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+    <link rel="stylesheet" href="css/styles.css" />
+    <link rel="stylesheet" href="css/index.css" />
+    <link
+      rel="stylesheet"
+      href="https://unicons.iconscout.com/release/v2.1.9/css/unicons.css"
+    />
+  </head>
+  <style>
+    body,
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+      font-family: "Montserrat", sans-serif;
+    }
 
-<head>
-  <meta charset="UTF-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <meta name="viewport" content="width=device-width" />
-  <title>AI86</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css" />
-  <link rel="stylesheet" href="css/styles.css" />
-  <link rel="stylesheet" href="css/index.css" />
-  <link rel="stylesheet" href="https://unicons.iconscout.com/release/v2.1.9/css/unicons.css" />
-</head>
+    .w3-row-padding img {
+      margin-bottom: 12px;
+    }
 
-<body>
-  <div class="section">
-    <aside>
-      <div class="navigation">
-        <div class="menu-toggle"></div>
-        <ul class="list">
-          <li class="list-item" style="--color: #f44336">
-            <a href="index.html">
-              <span class="icon">
-                <ion-icon name="home-outline"></ion-icon>
-              </span>
-              <span class="text">Home</span>
-            </a>
-          </li>
-          <li class="list-item" style="--color: #b145e9">
-            <a href="#">
-              <span class="icon">
-                <ion-icon name="search"></ion-icon>
-              </span>
-              <span class="text">Search</span>
-            </a>
-          </li>
-          <li class="list-item" style="--color: #ffa117">
-            <a href="signup.html">
-              <span class="icon">
-                <ion-icon name="person-outline"></ion-icon>
-              </span>
-              <span class="text">Login</span>
-            </a>
-          </li>
-          <li class="list-item" style="--color: #0fc70f">
-            <a href="#">
-              <span class="icon">
-                <ion-icon name="call-outline"></ion-icon>
-              </span>
-              <span class="text">Contact</span>
-            </a>
-          </li>
-          <li class="list-item" style="--color: #2196f3">
-            <a href="#">
-              <span class="icon">
-                <ion-icon name="grid-outline"></ion-icon>
-              </span>
-              <span class="text">Portfolio</span>
-            </a>
-          </li>
-        </ul>
-      </div>
-    </aside>
-    <div class="container">
-      <div class="row full-height justify-content-center">
-        <div class="col-12 text-center align-self-center py-5">
-          <div class="section pb-5 pt-5 pt-sm-2 text-center">
+    /* Set the width of the sidebar to 120px */
+    .w3-sidebar {
+      width: 120px;
+      background: rgb(255, 253, 253);
+    }
+  </style>
+  <body>
+    <div class="sidebar">
+      <nav class="w3-sidebar w3-bar-block w3-small w3-hide-small w3-center">
+        <!-- Avatar image in top left corner -->
+        <a href="lobby.html" class="w3-bar-item w3-button w3-padding-large w3-black">
+          <i class="fa fa-home w3-xxlarge"></i>
+          <p>Home</p>
+        </a>
+        <a href="signup.html" class="w3-bar-item w3-button w3-padding-large w3-hover-black">
+          <span class="icon">
+            <i class="fa fa-edit w3-xxlarge"></i>
+          </span>
+          <p>Login</p>
+        </a>
+        <a href="profile.html" class="w3-bar-item w3-button w3-padding-large w3-hover-black">
+          <i class="fa fa-user w3-xxlarge"></i>
+          <p>Profile</p>
+        </a>
+        <a href="leaderboard.html" class="w3-bar-item w3-button w3-padding-large w3-hover-black">
+          <span class="icon">
+            <i class="fa fa-trophy w3-xxlarge"></i>
+          </span>
+          <p>Leaderboard</p>
+        </a>
+        <a href="/" class="w3-bar-item w3-button w3-padding-large w3-hover-black">
+          <form class="logout" action="/logout" method="POST">
+            <span class="icon">
+              <i class="fa fa-sign-out w3-xxlarge"></i>
+            </span>
+            <p>Logout</p>
+          </form>
+        </a>
+      </nav>
+    </div>
+      <div class="container">
+        <div class="row full-height justify-content-center">
+          <div class="col-12 text-center align-self-center py-5">
+            <div class="section pb-5 pt-5 pt-sm-2 text-center"></div>
           </div>
         </div>
       </div>
     </div>
-  </div>
-  <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/p5@1.4.2/lib/p5.js"></script>
-  <script src="js/index.js"></script>
-</body>
-
+    <script
+      type="module"
+      src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"
+    ></script>
+    <script src="https://cdn.jsdelivr.net/npm/p5@1.4.2/lib/p5.js"></script>
+    <script src="js/index.js"></script>
+  </body>
 </html>

@@ -90,14 +90,16 @@ gameRoutes.post('/traincar', async (req, res) => {
   }
 })
 
-// gameRoutes.post('/leaderboard', async (req, res) => {
-//   try {
-//     let time = req.body.time
-//     let playerid = req.session['player_id']
-//     await knex.insert({ playerID: playerid, car_id: 0, racetime: time, map: 'map'}).into("leaderboard")
-//     res.json({ register: true, result: ['register success'] })
-//   } catch (err) {
-//     logger.error(err)
-//     res.status(500).json('Internal Server Error')
-//   }
-// })
+gameRoutes.post('/leaderboard', async (req, res) => {
+  try {
+    let time = req.body[1].time
+    let playerid = req.session['player_id']
+    let carid = req.session['car_id']
+    let map = `map${req.body[0]}`
+    await knex.insert({ player_id: playerid, car_id: carid, racetime: time, map: map}).into("leaderboard")
+    res.json({ result: true })
+  } catch (err) {
+    logger.error(err)
+    res.status(500).json('Internal Server Error')
+  }
+})

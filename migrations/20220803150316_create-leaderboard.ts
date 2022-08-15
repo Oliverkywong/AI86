@@ -6,7 +6,7 @@ export async function up(knex: Knex): Promise<void> {
     if (!hasTable) {
         await knex.schema.createTable("leaderboard", (table) => {
             table.increments();
-            table.integer("playerID").unsigned();
+            table.integer("player_id").unsigned();
             table.integer("car_id").unsigned();
             table.string("racetime");
             table.string("map");
