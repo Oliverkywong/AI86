@@ -13,50 +13,69 @@
   <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 </head>
 <style>
-  body, h1,h2,h3,h4,h5,h6 {font-family: "Montserrat", sans-serif}
-  .w3-row-padding img {margin-bottom: 12px}
+  body,
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: "Montserrat", sans-serif
+  }
+
+  .w3-row-padding img {
+    margin-bottom: 12px
+  }
+
   /* Set the width of the sidebar to 120px */
-  .w3-sidebar {width: 120px;background: rgb(255, 253, 253);}
-  
-  </style>
+  .w3-sidebar {
+    width: 120px;
+    background: rgb(255, 253, 253);
+  }
+</style>
+
 <body>
-<div class="sidebar"> <nav class="w3-sidebar w3-bar-block w3-small w3-hide-small w3-center">
-  <!-- Avatar image in top left corner -->
-  <a href="lobby.html" class="w3-bar-item w3-button w3-padding-large w3-black">
-    <i class="fa fa-home w3-xxlarge"></i>
-    <p>Home</p>
-  </a>
-  <a href="profile.html" class="w3-bar-item w3-button w3-padding-large w3-hover-black">
-    <i class="fa fa-user w3-xxlarge"></i>
-    <p>Profile</p>
-  </a>
-  <a href="leaderboard.html" class="w3-bar-item w3-button w3-padding-large w3-hover-black">
-    <span class="icon">
-      <i class="fa fa-trophy w3-xxlarge"></i>
-    </span>
-    <p>Leaderboard</p>
-  </a>
-  <a href="/logout" class="w3-bar-item w3-button w3-padding-large w3-hover-black">
-    <span class="icon">
-      <i class="fa fa-sign-out w3-xxlarge"></i>
-    </span>
-    <p>Logout</p>
-  </a>
-</nav></div>
-<div class="container">
-  <div class="countdown">
-    <div class="number">
-      <h2>3</h2>
-    </div>
-    
-    <div class="number">
-      <h2>2</h2>
-    </div>
-    
-    <div class="number">
-      <h2>1</h2>
-    </div>
+  <div class="sidebar">
+    <nav class="w3-sidebar w3-bar-block w3-small w3-hide-small w3-center">
+      <!-- Avatar image in top left corner -->
+      <a href="lobby.html" class="w3-bar-item w3-button w3-padding-large w3-black">
+        <i class="fa fa-home w3-xxlarge"></i>
+        <p>Home</p>
+      </a>
+      <a href="profile.html" class="w3-bar-item w3-button w3-padding-large w3-hover-black">
+        <i class="fa fa-user w3-xxlarge"></i>
+        <p>Profile</p>
+      </a>
+      <a href="leaderboard.html" class="w3-bar-item w3-button w3-padding-large w3-hover-black">
+        <span class="icon">
+          <i class="fa fa-trophy w3-xxlarge"></i>
+        </span>
+        <p>Leaderboard</p>
+      </a>
+      <a href="/" class="w3-bar-item w3-button w3-padding-large w3-hover-black">
+        <form class="logout" action="/logout" method="POST">
+          <span class="icon">
+            <i class="fa fa-sign-out w3-xxlarge"></i>
+          </span>
+          <p>Logout</p>
+        </form>
+      </a>
+    </nav>
   </div>
+  <div class="container">
+    <div class="countdown">
+      <div class="number">
+        <h2>3</h2>
+      </div>
+
+      <div class="number">
+        <h2>2</h2>
+      </div>
+
+      <div class="number">
+        <h2>1</h2>
+      </div>
+    </div>
     <canvas id="carCanvas"></canvas>
     <div id="verticalButtons">
       <button id="save">💾</button>
@@ -68,36 +87,43 @@
         <option value="AI05">AI05</option>
       </select>
 
-        <button id="use">use</button>
-        <select id="useai">
-          <option value="AI01">AI01</option>
-          <option value="AI02">AI02</option>
-          <option value="AI03">AI03</option>
-          <option value="AI04">AI04</option>
-          <option value="AI05">AI05</option>
-        </select>
+      <button id="use">use</button>
+      <select id="useai">
+        <option value="AI01">AI01</option>
+        <option value="AI02">AI02</option>
+        <option value="AI03">AI03</option>
+        <option value="AI04">AI04</option>
+        <option value="AI05">AI05</option>
+      </select>
 
-      <button id="network"><text1>Neural network</text1></button>
-      <button id="prevcar"><text2>Previous car</text2></button>
-      <button id="followingcar"><text3>Following car</text3></button>
-  </div>
-  <span id="gametime"></span>
-  <div id="allTime"></div>
-  <span id="playertime"></span>
-  <span id="saveerr"></span>
-  <span id="aitime"></span>
-  <span id="realtimespeed"></span>
+      <button id="network">
+        <text1>Neural network</text1>
+      </button>
+      <button id="prevcar">
+        <text2>Previous car</text2>
+      </button>
+      <button id="followingcar">
+        <text3>Following car</text3>
+      </button>
+    </div>
+    <span id="gametime"></span>
+    <div id="allTime"></div>
+    <span id="playertime"></span>
+    <span id="saveerr"></span>
+    <span id="aitime"></span>
+    <span id="realtimespeed"></span>
     <canvas id="networkCanvas" class="hidden"></canvas>
-</container>
-</div>
+    </container>
+  </div>
 
-    <script src="js/visualizer.js"></script>
-    <script src="js/network.js"></script>
-    <script src="js/sensor.js"></script>
-    <script src="js/utils.js"></script>
-    <script src="js/road.js"></script>
-    <script src="js/controls.js"></script>
-    <script src="js/car.js"></script>
-    <script src="js/game.js"></script>
+  <script src="js/visualizer.js"></script>
+  <script src="js/network.js"></script>
+  <script src="js/sensor.js"></script>
+  <script src="js/utils.js"></script>
+  <script src="js/road.js"></script>
+  <script src="js/controls.js"></script>
+  <script src="js/car.js"></script>
+  <script src="js/game.js"></script>
 </body>
+
 </html>
