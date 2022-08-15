@@ -5,13 +5,8 @@ class Controls {
     this.right = false;
     this.reverse = false;
 
-    switch (type) {
-      case "KEYS":
-        this.#addKeyboardListeners();
-        break;
-      case "DUMMY":
-        this.forward = true;
-        break;
+    if(type === "KEYS"){
+      this.#addKeyboardListeners();
     }
   }
 

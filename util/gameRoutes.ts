@@ -47,18 +47,37 @@ gameRoutes.get('/traincar', async (req, res) => {
 
 gameRoutes.post('/traincar', async (req, res) => {
   try {
+    // let bestAI = JSON.parse(await fs.promises.readFile(file, 'utf8'));
+
+    // if (bestAI.length != 0) {
+    //   for (let i = 0; i < bestAI.length; i++) {
+    //     console.log(req.body[0], bestAI[i][0])
+    //     if (req.body[0] == bestAI[i][0]) {
+    //       bestAI.splice(i, 1)
+    //       bestAI.push(req.body);
+    //       await fs.promises.writeFile(file, JSON.stringify(bestAI));
+    //     } else {
+    //       bestAI.push(req.body);
+    //       await fs.promises.writeFile(file, JSON.stringify(bestAI));
+    //       i=bestAI.length
+    //     }
+    //   }
+    // } else {
+    //   bestAI.push(req.body);
+    //   await fs.promises.writeFile(file, JSON.stringify(bestAI));
+    // }
     let bestAI = JSON.parse(await fs.promises.readFile(file, 'utf8'));
 
     if (bestAI.length != 0) {
-      for (let i = 0; i < bestAI.length; i++) {
-        console.log(req.body[0], bestAI[i][0])
-        if (req.body[0] == bestAI[i][0]) {
-          bestAI.splice(i, 1)
-          bestAI.push(req.body);
+      for (const ai of bestAI) {
+        if (ai[0] == req.body[0]) {
+          bestAI.splice(bestAI.indexOf(ai), 1, req.body)
           await fs.promises.writeFile(file, JSON.stringify(bestAI));
+          return
         } else {
-          bestAI.push(req.body);
+          bestAI.push(req.body)
           await fs.promises.writeFile(file, JSON.stringify(bestAI));
+          return
         }
       }
     } else {
