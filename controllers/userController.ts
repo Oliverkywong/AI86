@@ -52,7 +52,10 @@ export class userController{
     }
 
     logout = async (req:Request, res:Response) => {
-	    req.session['isLogin'] = false
-	    res.redirect('/')
+	    req.session.destroy;
+		req.session['isLogin'] = false;
+		// console.log("check if logouted: ", req.session)
+
+	    res.redirect('/');
     }
 }
