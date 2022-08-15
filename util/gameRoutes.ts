@@ -22,7 +22,6 @@ gameRoutes.post('/game/createCar', GameController.createCar)
 
 
 let name;
-
 gameRoutes.use((req, res, next) => {
   name = req.session['name']
   next();
@@ -30,7 +29,6 @@ gameRoutes.use((req, res, next) => {
 
 const uploadDir = 'trainAI'
 const file = path.join(uploadDir, `${name}.json`)
-// const file = path.join(uploadDir, `bestAI.json`)
 fs.mkdirSync(uploadDir, { recursive: true })
 if (!fs.existsSync(file)) {
   fs.writeFileSync(file, '[]')

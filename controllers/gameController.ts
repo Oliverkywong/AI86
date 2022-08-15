@@ -32,7 +32,7 @@ export class gameController{
 			const showCarList = await this.gameService.gameShowCar(usersID);
 			if (showCarList) {
 				jsonData = showCarList;
-				console.log(jsonData);
+				// console.log(jsonData);
 				res.status(200).json(jsonData);
 			} else {
 				// return false;

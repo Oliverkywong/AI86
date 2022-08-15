@@ -10,9 +10,9 @@ createCarForm.addEventListener('submit',async (e) => {
     e.preventDefault();
     e.stopPropagation();
     const model = document.querySelector('#model').value;
-    console.log('browser model value: ',model);
+    // console.log('browser model value: ',model);
     const color = document.querySelector('#color').value;
-    console.log('browser color value: ',color);
+    // console.log('browser color value: ',color);
     // let data = {"model":model, "color":color};
     // Promise.all([model, color]).then(async(values) => {
     // console.log("test");

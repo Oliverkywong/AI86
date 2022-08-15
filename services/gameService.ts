@@ -27,9 +27,9 @@ export class gameService{
             // let result = await this.knex.select('*').from('car').where('id', resultOwnedCarInt);
             let result = await this.knex.select('id', 'model', 'color').from('car').where('id', resultOwnedCarInt);
             carArray.push(result);
-            console.log(result);
+            // console.log(result);
         }
-        console.log('Owned car arr: ', JSON.stringify(carArray));
+        // console.log('Owned car arr: ', JSON.stringify(carArray));
         return carArray
         // let result = 
         // let jsonData = {

@@ -24,7 +24,7 @@ export class userController{
 				req.session['users_id'] = userlist[0].id
 				// console.log('user ID:', userlist[0].id)
 				req.session['email'] = userlist[0].email
-				console.log('Session info ' + JSON.stringify(req.session))
+				// console.log('Session info ' + JSON.stringify(req.session))
 
     			res.json({ login: true, result: ['login success'] })
     		}
