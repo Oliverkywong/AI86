@@ -74,12 +74,36 @@ export class gameController{
 	// Select Car
 	selectCar = async(req: Request, res: Response) => {
 		try {
-			let carID = req.session['car_id'];
-			const select = await this.gameService.gameSelectCar(carID);
-			console.log(select);
+			const { car_id }= req.body
+			console.log("car id:",car_id);
+			const currentUserID = req.session['users_id'];
+			let result =await this.gameService.gameSelectCar(car_id,currentUserID)
+			req.session['car_id'] = result.car_id;
+			req.session['model'] = result.model;
+			req.session['color'] = result.color;
+			console.log(req.session);
+			res.json("selected success")
 		} catch (err) {
 			logger.error(err);
 			res.status(500).json('Internal Server Error')
 		}
+	}
+
+	// Get selected Car
+	selectedCar = async(req: Request, res: Response) => {
+		try {
+			let carID = req.session['car_id'];
+			let carModel = req.session['model'];
+			let carColor = req.session['color'];
+    		// const selectedCar = await this.gameService.gameGetSelectedCar(carID, carModel, carColor);
+			const selectedCar = { carID, carModel, carColor };
+			console.log(selectedCar);
+			return res.status(200).json(selectedCar);
+		} catch (err) {
+			logger.error(err);
+			res.status(500).json('Internal Server Error')
+			return
+		}
+
 	}
 }

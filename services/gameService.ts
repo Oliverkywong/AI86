@@ -29,6 +29,11 @@ export class gameService{
         return carArray
     }
 
+    // Get selected car
+    // gameGetSelectedCar = async (carID: number, carModel: string, carColor: string) => {
+    //     return selectedCarArray
+    // }
+
     // Insert
     // Create a new car
     gameCreateCar = async (model: string, color: string,  email: string, usersID: number) => {
@@ -49,9 +54,11 @@ export class gameService{
                 console.log(getCarID)
                 // Get latest car ID
                 let carID = parseInt(getCarID.id)
+                console.log("create car", carID)
                 // Insert users & car relationship
                 await this.knex("users_car").insert({ users_id: usersID, car_id: carID})
                 // return jsonData;
+                console.log(result);
                 return result
             } else {
                 console.log('You cannot own more car!!')
@@ -62,8 +69,17 @@ export class gameService{
         }
     }
 
-    gameSelectCar = async(carID: number) => {
-
+    gameSelectCar = async(car_id: number,currentUserId:number) => {
+        // Identify car owner
+        let result = await this.knex.raw(`select car_id,model,color from users_car 
+        inner join car
+        on users_car.car_id =car.id
+        where users_id=?
+        and car_id=?`,[currentUserId,car_id])
+        
+        return result.rows[0]
+       
     }
+    
 
 }

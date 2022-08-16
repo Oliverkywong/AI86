@@ -52,10 +52,17 @@ export class userController{
     }
 
     logout = async (req:Request, res:Response) => {
-	    req.session.destroy;
+		delete req.session['player_id'];
+		delete req.session['name'];
+		delete req.session['users_id'];
+		delete req.session['email'];
+		delete req.session['car_id'];
+		delete req.session['model'];
+		delete req.session['color'];
 		req.session['isLogin'] = false;
 		// console.log(req.session['isLogin'])
 
 	    res.redirect('/');
+		console.log(req.session);
     }
 }

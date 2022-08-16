@@ -17,6 +17,8 @@ export const GameController = new gameController(GameResult)
 gameRoutes.get('/game/ranking', GameController.ranking)
 // Get owned car
 gameRoutes.get('/game/showCar', GameController.showCar)
+// Get selected car
+gameRoutes.get('/game/selectedCar', GameController.selectedCar)
 // Create car
 gameRoutes.post('/game/createCar', GameController.createCar)
 // Select car
