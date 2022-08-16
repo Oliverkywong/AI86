@@ -49,12 +49,12 @@ class Car {
     // console.log("check"+this.check)
     // console.log("win"+this.win)
     // if(!this.cheat){
-      // this.check = this.#checkcheck(checkborder);
-      if(!this.check){
+      this.check = this.#checkcheck(checkborder);
+      // if(!this.check){
         this.win = this.#checkwin(winborder);
         // this.win = this.#checkwin(winborder);
         // this.check = false
-      }
+      // }
     // }
     if (!this.damaged) {
       this.#move();
@@ -119,6 +119,7 @@ class Car {
           return false
         }
   }
+
   // #checkwin(winborder){
   //   if(polysIntersect(this.polygon, winborder)){
   //     return true;

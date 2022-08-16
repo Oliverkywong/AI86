@@ -9,8 +9,6 @@ networkCanvas.height = 500;
   let start = Date.now();
   let end;
   let gametime;
-  let check = true;
-  let check2 = true;
   let lapcount = 0
   let win = [];
   let carwidth = 30
@@ -115,20 +113,8 @@ networkCanvas.height = 500;
   });
 
   setTimeout(()=>{animate()}, 3000 )
-  // animate();
 
   async function animate(time) {
-    // const socket = io.connect('/game')
-    // // socket.on('otherplayer', (location) => {
-    //   // console.log(location)
-    // socket.emit('playerlocation', { x: player.x, y: player.y })
-    // // })
-    // socket.on('remoteplayer', (location) => {
-    //   console.log(location)
-    //   otherplayer.x = location.x
-    //   otherplayer.y = location.y
-    //   otherplayer.update(road.borders, player, road.winborder, road.checkborder, road.cheatborder)
-    // })
     let showtime = Date.now() - start;
     let second = (showtime / 1000) % 60;
     let minute = (showtime / 1000 / 60) % 60;
@@ -159,13 +145,7 @@ networkCanvas.height = 500;
           minute = (showtime / 1000 / 60) % 60;
           wintime = { time: `${Math.floor(minute)} m ${(Math.floor(second) % 60)} s ${(showtime % 1000)}` }
           document.querySelector('#playertime').innerHTML = `player lap time: ${wintime.time}`
-          // await fetch('/leaderboard', {
-          //   method: 'POST',
-          //   headers: {
-          //     'Content-Type': 'application/json'
-          //   },
-          //   body: JSON.stringify(wintime)
-          // })
+
           Promise.all([mapborad, wintime]).then(async (values) => {
             await fetch('/leaderboard', {
               method: 'POST',
@@ -182,10 +162,9 @@ networkCanvas.height = 500;
     for (let i = 0; i < cars.length; i++) {
       let win = [];
       cars[i].update(road.borders, player, road.winborder, road.checkborder, road.cheatborder);
-
       if (!cars[i].cheat) {
         if (!cars[i].check) {
-          if (cars[i].win) {
+            if(cars[i].win){
             win.push(showtime)
             if (lapcount == 0) {
               lap = win[lapcount]
@@ -203,8 +182,6 @@ networkCanvas.height = 500;
     }
 
     carCtx.save();
-    // otherplayer.draw(carCtx)
-    // road.draw(carCtx);
     player.draw(carCtx);
 
     carCtx.globalAlpha = 0.2;

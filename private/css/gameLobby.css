@@ -36,3 +36,8 @@ text1{
     background-color: black;
 }
 
+.container{
+    position: absolute;
+    top:25%;
+    left: 30%;
+}
