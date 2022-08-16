@@ -16,9 +16,11 @@ export const GameController = new gameController(GameResult)
 // Get ranking
 gameRoutes.get('/game/ranking', GameController.ranking)
 // Get owned car
-gameRoutes.post('/game/showCar', GameController.showCar)
+gameRoutes.get('/game/showCar', GameController.showCar)
 // Create car
 gameRoutes.post('/game/createCar', GameController.createCar)
+// Select car
+gameRoutes.post('/game/selectCar', GameController.selectCar)
 
 
 let name;
