@@ -40,7 +40,7 @@ networkCanvas.height = 500;
 
   const player = new Car(playerx, playery, carwidth, carheight, "KEYS", 5, "yellow", model)
 
-  const N = 50;
+  const N = 30;
   const cars = generateCars(N);
   let bestCar = cars[0];
   let carcount = 0
@@ -112,7 +112,10 @@ networkCanvas.height = 500;
     }
   });
 
-  setTimeout(()=>{animate()}, 3000 )
+
+  setTimeout(()=>{
+    animate()
+  }, 3000 )
 
   async function animate(time) {
     let showtime = Date.now() - start;
@@ -145,8 +148,8 @@ networkCanvas.height = 500;
           minute = (showtime / 1000 / 60) % 60;
           wintime = { time: `${Math.floor(minute)} m ${(Math.floor(second) % 60)} s ${(showtime % 1000)}` }
           document.querySelector('#playertime').innerHTML = `player lap time: ${wintime.time}`
-
-          Promise.all([mapborad, wintime]).then(async (values) => {
+          
+          Promise.all([mapborad, showtime]).then(async (values) => {
             await fetch('/leaderboard', {
               method: 'POST',
               headers: {

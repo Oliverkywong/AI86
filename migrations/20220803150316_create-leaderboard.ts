@@ -7,8 +7,9 @@ export async function up(knex: Knex): Promise<void> {
         await knex.schema.createTable("leaderboard", (table) => {
             table.increments();
             table.integer("player_id").unsigned();
+            table.string("name").unsigned();
             table.integer("car_id").unsigned();
-            table.string("racetime");
+            table.integer("racetime");
             table.string("map");
             table.timestamps(false, true);
         });
