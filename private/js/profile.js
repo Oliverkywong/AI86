@@ -6,7 +6,7 @@ createCarForm.addEventListener('submit',async (e) => {
     e.stopPropagation();
     let form = e.target;
     let formData = new FormData(form);
-    // console.log("Can you show form?: ", formData);
+
     let response = await fetch('/game/createCar', {
         method: 'post',
         body: formData,
@@ -21,6 +21,7 @@ async function getOwnerCar() {
     const res = await fetch('/game/showCar')
     const showCar = await res.json()
     // console.log(JSON.stringify(showCar));
+
     for(let i = 0; i < showCar.length; i++) {
         document.querySelector('#ownedCar').innerHTML +=
 `<div class="card col">
@@ -33,6 +34,18 @@ async function getOwnerCar() {
 }
 
 getOwnerCar();
+
+// Get user info
+
+async function getInfo() {
+    const res = await fetch('/user/getInfo');
+    const getInfo = await res.json();
+    document.querySelector('#name').innerHTML = getInfo.userName;
+    document.querySelector('#player_id').innerHTML = 'Player ID: ' + getInfo.userID;
+    document.querySelector('#email').innerHTML = 'Email: ' + getInfo.email;
+}
+
+getInfo();
 // function getOwnedCar () {
 //     const showCar = document.getElementById('ownedCar')
 //     const response = window.fetch('http://localhost:8989/game/showCar', {

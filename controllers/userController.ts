@@ -57,12 +57,26 @@ export class userController {
 			res.status(500).json('Internal Server Error')
 		}
 	}
+	
+	getInfo = async(req: Request, res: Response) => {
+		try {
+			let userID = req.session['player_id'];
+			let userName = req.session['name'];
+			let email = req.session['email'];
+			const userInfo = { userID, userName, email };
+			return res.status(200).json(userInfo)
+		} catch (err) {
+			logger.error(err);
+			res.status(500).json('Internal Server Error')
+			return
+		}
+	}
 
-	logout = async (req: Request, res: Response) => {
-		req.session.destroy;
+    logout = async (req:Request, res:Response) => {
+	    req.session.destroy;
 		req.session['isLogin'] = false;
 		// console.log(req.session['isLogin'])
 
-		res.redirect('/');
-	}
+	    res.redirect('/');
+    }
 }

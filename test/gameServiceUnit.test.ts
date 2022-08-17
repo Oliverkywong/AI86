@@ -18,11 +18,11 @@ describe('gameService Unit test fs', () => {
         expect(data).toEqual("[]")
     })
 
-    it('should not get data', async () => {
-        name = 'test1'
-        const data =  await gameservice.readaicar(name,dir);
-        expect(data).toBe('File not found');
-    })
+    // it('should not get data', async () => {
+    //     name = 'test1'
+    //     const data =  await gameservice.readaicar(name,dir);
+    //     expect(data).toBe('File not found');
+    // })
 
     it('should write file', async () => {
         

@@ -56,30 +56,23 @@
     <main>
       <div class="card" style="display: flex;">
         <img src="img/Kimi-Riakkonen.jpg" style="width:100%">
-        <h1>Player1</h1>
-        <p class="title">level 999</p>
-        <p>F1</p>
-        <img src="img/f1.png" class="carPhoto" style="align-items:center;">
-        
-        <!-- <form>
-          <select name="carColor" id="carColor">
-            <option value="red">red</option>
-            <option value="green">green</option>
-            <option value="blue">blue</option>
-            <option value="purple">purple</option>
-            <option value="yellow">yellow</option>
-          </select>
-          <button id="submit">Submit</button>
-        </form> -->
+        <h1 id="name"></h1>
+        <p id="player_id"></p>
+        <p id="email"></p>
+      </div>
+      <div class="container">
+        <h1>Create Your Car below!</h1>
+      </div>
+      <div class="container">
         <form id="createCarForm">
-          <select name="model" id="model">
-            <option value="./img/F1.png">F1</option>
-            <option value="./img/fer.png">FER</option>
-            <option value="./img/lambo.png">LAMBO</option>
-            <option value="./img/wolf.png">WOLF</option>
-            <option value="./img/dragon.png">DRAGON</option>
+          <select name="model" id="model" onchange="document.getElementById('preview').src = this.value.substring(1)">
+            <option value="../img/F1.png">F1</option>
+            <option value="../img/fer.png">FER</option>
+            <option value="../img/lambo.png">LAMBO</option>
+            <option value="../img/wolf.png">WOLF</option>
+            <option value="../img/dragon.png">DRAGON</option>
           </select>
-          <select name="color" id="color">
+          <select name="color" id="color" onchange="document.getElementById('preview').style.backgroundColor = this.value">
             <option value="red">Red</option>
             <option value="green">Green</option>
             <option value="blue">Blue</option>
@@ -88,10 +81,16 @@
             <option value="white">White</option>
             <option value="black">Black</option>
             <option value="silver">Silver</option>
-            <option value="pick">Pink</option>
+            <option value="pink">Pink</option>
           </select>
-          <button class="btn" id="createCar" type="submit" value="post">Create Car</button>
+          <button class="btn btn-light" type="submit" value="post">Create Car</button>
         </form>
+      </div>
+      <div class="container">
+        <img id="preview" class="carPhoto">
+      </div>
+      <div class="container">
+        <h1>Your cars</h1>
       </div>
       <div class="container">
         <div class="row" id="ownedCar"></div>

@@ -1,3 +1,5 @@
+// const { response } = require("express")
+
 document.querySelector('#map1').addEventListener('click', () => {
     window.location.href = '../gamepage.html'
 })
@@ -19,3 +21,28 @@ async function getOwnerCarID() {
 }
 
 getOwnerCarID();
+
+// Select car
+
+const selectCarForm = document.querySelector("#selectCarForm");
+selectCarForm.addEventListener('submit', async (e) => {
+    e.preventDefault();
+
+    let form = e.target;
+    const formObject = {}
+    formObject['car_id'] = form.car_id.value
+
+
+    const response = await fetch('/game/selectCar', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formObject),
+      })
+
+
+
+    let result = await response.json();
+    alert(JSON.stringify(result));
+});

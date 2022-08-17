@@ -1,6 +1,13 @@
 // const socket = io.connect('/game')
 
-const carCanvas = document.getElementById("carCanvas");
+
+async function getSelectedCar() {
+  const res = await fetch('/game/selectedCar')
+  let selectedCar = await res.json()
+  let sCarID = selectedCar.carID;
+  let sCarModel = selectedCar.carModel;
+  let sCarColor = selectedCar.carColor;
+  const carCanvas = document.getElementById("carCanvas");
 const networkCanvas = document.getElementById("networkCanvas");
 
 networkCanvas.width = 500;
@@ -17,7 +24,8 @@ networkCanvas.height = 500;
   let playery = 550
   let AIx = 130
   let AIy = 550
-  let model = "../img/fer.png";
+  let model = sCarModel;
+  let color = sCarColor;
   const carCtx = carCanvas.getContext("2d");
   const networkCtx = networkCanvas.getContext("2d");
   let map = "url('../img/FHrH8TJUcAAetQB_1280jpg.jpg')"
@@ -38,7 +46,7 @@ networkCanvas.height = 500;
 
   const road = new Road(mapborad);
 
-  const player = new Car(playerx, playery, carwidth, carheight, "KEYS", 5, "yellow", model)
+  const player = new Car(playerx, playery, carwidth, carheight, "KEYS", 5, color, model)
 
   const N = 30;
   const cars = generateCars(N);
@@ -200,4 +208,11 @@ networkCanvas.height = 500;
     Visualizer.drawNetwork(networkCtx, bestCar.brain);
     requestAnimationFrame(animate);
   }
+
+
+};
+
+getSelectedCar();
+
+
 
