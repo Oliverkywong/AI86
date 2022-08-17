@@ -11,7 +11,6 @@ export class gameController{
     	try {
     		const rankingList = await this.gameService.gameRanking();
     		if (rankingList) {
-                // console.log(rankingList);
                 res.status(200).json(rankingList);
     		} else {
     			res.json({ status: "fail", result: ['error fail'] });
@@ -24,18 +23,12 @@ export class gameController{
 
 	// Current owned car data
 	showCar = async (req: Request, res: Response) => {
-		// console.log('hi');
-		// let jsonData = {};
 		try {
 			let usersID = req.session['users_id']
-			// console.log(usersID);
 			const showCarList = await this.gameService.gameShowCar(usersID);
 			if (showCarList) {
-				// jsonData = showCarList;
-				// console.log(jsonData);
 				res.status(200).json(showCarList);
 			} else {
-				// return false;
 				res.json({ status: "fail", result: ['error fail'] });
 			}
 		} catch (err) {
@@ -53,16 +46,13 @@ export class gameController{
 				let color = fields.color.toString();
 				let email = req.session['email'];
 				let usersID = req.session['users_id'];
-				// console.log("fields: ", fields);
-				// console.log("Create Car model: ", model);
-				// console.log("Create Car color: ", color);
-				console.log("Create Car email: ", email);
-				console.log("Create Car usersID: ", usersID);
 				const create = await this.gameService.gameCreateCar(model, color, email, usersID);
-				if (create !==null && true) {
-					res.json({ createCar: true, result: ['Create car successfully']})
+				if (create == 1) {
+					res.status(200).json('Create car successfully')
+				} else if (create == 2) {
+					res.status(200).json('You cannot own more car!!');
 				} else {
-					res.json({ createCar: false, result: ['Create car fail']});
+					res.status(200).json('Create car failed')
 				}
 			})
 		} catch (err) {
@@ -81,7 +71,6 @@ export class gameController{
 			req.session['car_id'] = result.car_id;
 			req.session['model'] = result.model;
 			req.session['color'] = result.color;
-			console.log(req.session);
 			res.json("selected success")
 		} catch (err) {
 			logger.error(err);
@@ -95,9 +84,7 @@ export class gameController{
 			let carID = req.session['car_id'];
 			let carModel = req.session['model'];
 			let carColor = req.session['color'];
-    		// const selectedCar = await this.gameService.gameGetSelectedCar(carID, carModel, carColor);
 			const selectedCar = { carID, carModel, carColor };
-			console.log(selectedCar);
 			return res.status(200).json(selectedCar);
 		} catch (err) {
 			logger.error(err);

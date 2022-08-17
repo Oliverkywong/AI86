@@ -7,7 +7,6 @@ async function getSelectedCar() {
   let sCarID = selectedCar.carID;
   let sCarModel = selectedCar.carModel;
   let sCarColor = selectedCar.carColor;
-  console.log(sCarID, sCarModel, sCarColor);
   const carCanvas = document.getElementById("carCanvas");
 const networkCanvas = document.getElementById("networkCanvas");
 
@@ -28,11 +27,7 @@ networkCanvas.height = 500;
   let AIx = 130
   let AIy = 550
   let model = sCarModel;
-  // let model = sCarModel;
-  // console.log(model);
   let color = sCarColor;
-  // let color = selectedCar.carModel;
-  // console.log(color);
   const carCtx = carCanvas.getContext("2d");
   const networkCtx = networkCanvas.getContext("2d");
   let map = "url('../img/FHrH8TJUcAAetQB_1280jpg.jpg')"

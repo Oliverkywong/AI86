@@ -29,20 +29,13 @@ export class gameService{
         return carArray
     }
 
-    // Get selected car
-    // gameGetSelectedCar = async (carID: number, carModel: string, carColor: string) => {
-    //     return selectedCarArray
-    // }
-
     // Insert
     // Create a new car
     gameCreateCar = async (model: string, color: string,  email: string, usersID: number) => {
 
         // Identify car owner
         let result: string[] = await this.knex.select('email').from('users').where('email', email)
-        console.log("car owner", result);
         // Identify current car number (max 5 cars)
-        
         let currentCar: number[] = await this.knex.select('car_id').from('users_car').where('users_id', usersID)
         console.log("What I have now", currentCar);
         console.log("current car.length", currentCar.length)
@@ -57,18 +50,17 @@ export class gameService{
                 console.log("create car", carID)
                 // Insert users & car relationship
                 await this.knex("users_car").insert({ users_id: usersID, car_id: carID})
-                // return jsonData;
-                console.log(result);
-                return result
+                return 1;
             } else {
                 console.log('You cannot own more car!!')
-                return false;
+                return 2;
             }
         } else {
             return false;
         }
     }
 
+    // Select car
     gameSelectCar = async(car_id: number,currentUserId:number) => {
         // Identify car owner
         let result = await this.knex.raw(`select car_id,model,color from users_car 
@@ -80,6 +72,4 @@ export class gameService{
         return result.rows[0]
        
     }
-    
-
 }
