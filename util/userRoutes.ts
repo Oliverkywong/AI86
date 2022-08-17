@@ -9,6 +9,7 @@ export function createUserRoutes(usercontroller: userController) {
 	userRoutes.post('/login',usercontroller.login)
 	userRoutes.post('/register',usercontroller.register)
 	userRoutes.get('/logout',usercontroller.logout)
+	userRoutes.get('/user/getInfo', usercontroller.getInfo)
 	
 	return userRoutes
 }

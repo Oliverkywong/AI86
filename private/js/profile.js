@@ -33,6 +33,19 @@ async function getOwnerCar() {
 }
 
 getOwnerCar();
+
+// Get user info
+
+async function getInfo() {
+    const res = await fetch('/user/getInfo');
+    const getInfo = await res.json();
+    console.log(getInfo);
+    document.querySelector('#name').innerHTML = getInfo.userName;
+    document.querySelector('#player_id').innerHTML = 'Player ID: ' + getInfo.userID;
+    document.querySelector('#email').innerHTML = 'Email: ' + getInfo.email;
+}
+
+getInfo();
 // function getOwnedCar () {
 //     const showCar = document.getElementById('ownedCar')
 //     const response = window.fetch('http://localhost:8989/game/showCar', {

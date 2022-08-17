@@ -65,4 +65,18 @@ export class userController{
 	    res.redirect('/');
 		console.log(req.session);
     }
+
+	getInfo = async(req: Request, res: Response) => {
+		try {
+			let userID = req.session['player_id'];
+			let userName = req.session['name'];
+			let email = req.session['email'];
+			const userInfo = { userID, userName, email };
+			return res.status(200).json(userInfo)
+		} catch (err) {
+			logger.error(err);
+			res.status(500).json('Internal Server Error')
+			return
+		}
+	}
 }
