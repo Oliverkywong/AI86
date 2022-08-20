@@ -10,7 +10,7 @@ env:
   POSTGRES_HOST: postgres
   DB_NAME: ai86
   DB_USERNAME: postgres
-  DB_PASSWORD: oliver
+  DB_PASSWORD: postgres
 
 jobs:
   testing:

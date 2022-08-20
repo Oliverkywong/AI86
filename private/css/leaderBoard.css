@@ -1,26 +1,31 @@
-.leaderBoardContainer {
-    width: 900px;
-    background-color: white;
-    display: flex;
-    border-radius: 20px;
-}
-
 .container {
   display: flex;
   justify-content: center;
-
+  align-items: center;
+  border: 5px solid #effb04;
+  background-image: url('../img/leader.png');
+  color: #ffffff;
+  flex-direction: column;
 }
 
-.leaderBoardContent {
-    width: 700px;
-    height: 200px;
-    background-color: grey;
-    border-radius: 20px;
-    margin: 20px;
-    color: black;
-    font-size: 20px;
+.leaderboard{
+  display: flex;
+  flex-direction: row;
 }
 
+table{
+  margin: 20px;
+}
+
+.map{
+  text-align: center;
+}
+
+th{
+  text-align: center;
+  border: 3px solid#ffffff;
+  padding: 5px;
+}
 
 .text {
    display: flex;

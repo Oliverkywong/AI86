@@ -5,13 +5,13 @@ async function getSelectedCar() {
   const res = await fetch('/game/selectedCar')
   let selectedCar = await res.json()
   let sCarID = selectedCar.carID;
-  let sCarModel = selectedCar.carModel;
   let sCarColor = selectedCar.carColor;
+  let sCarModel = selectedCar.carModel;
   const carCanvas = document.getElementById("carCanvas");
-const networkCanvas = document.getElementById("networkCanvas");
+  const networkCanvas = document.getElementById("networkCanvas");
 
-networkCanvas.width = 500;
-networkCanvas.height = 500;
+  networkCanvas.width = 500;
+  networkCanvas.height = 500;
 
   let start = Date.now();
   let end;
@@ -32,7 +32,7 @@ networkCanvas.height = 500;
   let mapborad = 1
 
   let urlParams = new URLSearchParams(window.location.search);
-  if(urlParams.get('map')==2){
+  if (urlParams.get('map') == 2) {
     mapborad = 2
     map = "url('../img/STP58.jpg')"
     carwidth = 15
@@ -42,20 +42,20 @@ networkCanvas.height = 500;
     AIx = 100
     AIy = 550
   }
-  
+
 
   const road = new Road(mapborad);
 
   const player = new Car(playerx, playery, carwidth, carheight, "KEYS", 5, color, model)
 
-  const N = 30;
+  const N = 100;
   const cars = generateCars(N);
   let bestCar = cars[0];
   let carcount = 0
   function generateCars(N) {
     const cars = [];
     for (let i = 1; i <= N; i++) {
-      cars.push(new Car(AIx, AIy, carwidth, carheight, "AI", 5));
+      cars.push(new Car(AIx, AIy, carwidth, carheight, "AI", 3));
     }
     return cars;
   }
@@ -121,9 +121,9 @@ networkCanvas.height = 500;
   });
 
 
-  setTimeout(()=>{
+  setTimeout(() => {
     animate()
-  }, 3000 )
+  }, 3000)
 
   async function animate(time) {
     let showtime = Date.now() - start;
@@ -137,7 +137,6 @@ networkCanvas.height = 500;
     document.getElementById("carCanvas").style.background = map
     carCanvas.width = 1280;
     carCanvas.height = 940;
-
 
     player.update(road.borders, [], road.winborder, road.checkborder, road.cheatborder);
 
@@ -156,7 +155,7 @@ networkCanvas.height = 500;
           minute = (showtime / 1000 / 60) % 60;
           wintime = { time: `${Math.floor(minute)} m ${(Math.floor(second) % 60)} s ${(showtime % 1000)}` }
           document.querySelector('#playertime').innerHTML = `player lap time: ${wintime.time}`
-          
+
           Promise.all([mapborad, showtime]).then(async (values) => {
             await fetch('/leaderboard', {
               method: 'POST',
@@ -175,7 +174,7 @@ networkCanvas.height = 500;
       cars[i].update(road.borders, player, road.winborder, road.checkborder, road.cheatborder);
       if (!cars[i].cheat) {
         if (!cars[i].check) {
-            if(cars[i].win){
+          if (cars[i].win) {
             win.push(showtime)
             if (lapcount == 0) {
               lap = win[lapcount]
@@ -208,8 +207,6 @@ networkCanvas.height = 500;
     Visualizer.drawNetwork(networkCtx, bestCar.brain);
     requestAnimationFrame(animate);
   }
-
-
 };
 
 getSelectedCar();

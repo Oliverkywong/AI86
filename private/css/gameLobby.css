@@ -36,24 +36,9 @@ text1{
     background-color: black;
 }
 
-#map{
-    position: absolute;
-    top:25%;
-    left: 30%;
-    display: flex;
-    justify-content: center;
-    color: white;
-}
-
-
-#selectCarForm{
-  position: absolute;
-  top:50%;
-  left: 43%;
+.container{
   color: white;
 }
-
-
 
 body,
 h1,
@@ -74,4 +59,6 @@ h6 {
   width: 120px;
   background: rgb(255, 253, 253);
 }
+
+
 

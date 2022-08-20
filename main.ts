@@ -36,7 +36,6 @@ const usercontroller = new userController(userservice)
 app.use(createUserRoutes(usercontroller));
 
 
-// Move to bottom if need login
 app.use(isLogin,express.static("private"));
 
 const port = process.env.PORT || 8989

@@ -21,6 +21,8 @@ class Car {
     if (controlType != "KEY") {
       this.sensor = new Sensor(this);
       this.brain = new NeuralNetwork([this.sensor.rayCount, 6, 4]);
+    }else if (controlType == "DISPLAY"){
+      this.controls = null
     }
     this.controls = new Controls(controlType);
 
@@ -119,24 +121,6 @@ class Car {
           return false
         }
   }
-
-  // #checkwin(winborder){
-  //   if(polysIntersect(this.polygon, winborder)){
-  //     return true;
-  //   }
-  // }
-
-  //   #checkcheck(checkborder){
-  //   if(polysIntersect(this.polygon, checkborder)){
-  //     return true;
-  //   }
-  // }
-
-  // #checkcheat(cheatborder){
-  //   if(polysIntersect(this.polygon, cheatborder)){
-  //     return true;
-  //   }
-  // }
 
   #assessDamage(roadBorders, player) {
     for (let i = 0; i < roadBorders.length; i++) {
