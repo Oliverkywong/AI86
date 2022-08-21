@@ -1,7 +1,7 @@
 async function getRanking() {
     const res = await fetch('/game/ranking')
     const ranking = await res.json()
-    console.log(ranking)
+    // console.log(ranking)
     for (let i = 0; i < ranking.length; i++) {
 
         showtime = ranking[i].racetime
