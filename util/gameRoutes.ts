@@ -11,15 +11,15 @@ const GameResult = new gameService(knex)
 export const GameController = new gameController(GameResult)
 
 // Get ranking
-gameRoutes.get('/game/ranking', GameController.ranking)
+gameRoutes.get('/ranking', GameController.ranking)
 // Get owned car
-gameRoutes.get('/game/showCar', GameController.showCar)
+gameRoutes.get('/car', GameController.showCar)
 // Get selected car
-gameRoutes.get('/game/selectedCar', GameController.selectedCar)
+gameRoutes.get('/selectedCar', GameController.selectedCar)
 // Create car
-gameRoutes.post('/game/createCar', GameController.createCar)
+gameRoutes.post('/car', GameController.createCar)
 // Select car
-gameRoutes.post('/game/selectCar', GameController.selectCar)
+gameRoutes.post('/selectCar', GameController.selectCar)
 
 gameRoutes.post('/leaderboard', GameController.inputranking)
 

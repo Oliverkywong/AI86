@@ -9,7 +9,7 @@ document.querySelector('#map2').addEventListener('click', () => {
 // Get Owned Car ID
 
 async function getOwnerCarID() {
-    const res = await fetch('/game/showCar')
+    const res = await fetch('/car')
     const showCar = await res.json()
     for(let i = 0; i < showCar.length; i++) {
         document.querySelector('#ownedCarID').innerHTML +=
@@ -30,7 +30,7 @@ selectCarForm.addEventListener('submit', async (e) => {
     formObject['car_id'] = form.car_id.value
 
 
-    const response = await fetch('/game/selectCar', {
+    const response = await fetch('/selectCar', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

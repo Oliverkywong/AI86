@@ -2,7 +2,7 @@
 
 
 async function getSelectedCar() {
-  const res = await fetch('/game/selectedCar')
+  const res = await fetch('/selectedCar')
   let selectedCar = await res.json()
   let sCarID = selectedCar.carID;
   let sCarColor = selectedCar.carColor;
@@ -80,9 +80,6 @@ async function getSelectedCar() {
       if (ai == result[i][0]) {
         found = result[i][1]
       }
-      // else{
-      //   document.querySelector("#saveerr").innerHTML = `you dont save this AI`
-      // }
     }
     const data = JSON.stringify(found);
     for (let i = 0; i < cars.length; i++) {

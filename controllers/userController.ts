@@ -71,7 +71,6 @@ export class userController {
     logout = async (req:Request, res:Response) => {
 	    // req.session.destroy();
 		req.session['isLogin'] = false;
-
 	    res.redirect('/');
     }
 }
