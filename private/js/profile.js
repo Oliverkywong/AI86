@@ -1,7 +1,7 @@
 // Create car
 
 const createCarForm = document.querySelector("#createCarForm");
-createCarForm.addEventListener('submit',async (e) => {
+createCarForm.addEventListener('submit', async (e) => {
     e.preventDefault();
     e.stopPropagation();
     let form = e.target;
@@ -12,7 +12,9 @@ createCarForm.addEventListener('submit',async (e) => {
         body: formData,
     });
     let result = await response.json();
-    alert(JSON.stringify(result));
+    if(result.create){
+        window.location.reload();
+    }
 });
 
 // Get Owned Car
@@ -20,20 +22,64 @@ createCarForm.addEventListener('submit',async (e) => {
 async function getOwnerCar() {
     const res = await fetch('/game/showCar')
     const showCar = await res.json()
-    // console.log(JSON.stringify(showCar));
 
-    for(let i = 0; i < showCar.length; i++) {
+    for (let i = 0; i < showCar.length; i++) {
         document.querySelector('#ownedCar').innerHTML +=
-`<div class="card col">
-    <img class="carPhoto" src="${showCar[i][0].model}">
-        <div>Your car: ${i + 1}</div>
-    <div id="id">car ID: ${showCar[i][0].id}</div>
-    <div id="color">Color: ${showCar[i][0].color}</div>
-</div>`
+            `<div class="card col">
+                <img class="carPhoto" src="${showCar[i][0].model}">
+                <div>Your car: ${i + 1}</div>
+                <div id="id">car ID: ${showCar[i][0].id}</div>
+                <div id="color">Color: ${showCar[i][0].color}</div>
+            </div>`
     }
 }
 
+// async function getOwnerCar() {
+//     const res = await fetch('/game/showCar')
+//     const showCar = await res.json()
+
+//     for (let i = 0; i < showCar.length; i++) {
+//         document.querySelector('#ownedCar').innerHTML +=
+//             `<div class="card col">
+//             <canvas id="carCanvas" ></canvas>
+                
+//                 <div>Your car: ${i + 1}</div>
+//                 <div id="id">car ID: ${showCar[i][0].id}</div>
+//                 <div id="color">Color: ${showCar[i][0].color}</div>
+//             </div>`
+
+// const carCanvas = document.getElementById(`${showCar[i][0].id}`);
+// const carCtx = carCanvas.getContext("2d");  
+// let car = new Image();
+// car.src = `${showCar[i][0].model}`
+// car.onload = function(){
+// carCtx.fillStyle = showCar[i][0].color;
+
+//     carCtx.drawImage(car,110,10, 80, 130); 
+
+// }
+// var img = new Image; img.onload = draw; img.src = `${showCar[i][0].model}`;
+// var ctx = carCanvas.getContext("2d");
+
+// function draw() {
+//   // draw color
+//   ctx.fillStyle = showCar[i][0].color;
+//   ctx.fillRect(0, 0, carCanvas.width, carCanvas.height);
+  
+//   // set composite mode
+//   ctx.globalCompositeOperation = "destination-in";
+  
+//   // draw image
+//   ctx.drawImage(this,110,10, 80, 130);
+// }
+
+//     }
+
+// }
+
 getOwnerCar();
+
+
 
 // Get user info
 
@@ -78,4 +124,4 @@ getInfo();
 // }
 
 // getOwnedCar();
-    
+

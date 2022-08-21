@@ -9,7 +9,6 @@ export class userService{
             return 1;
         }else {
             if (await checkPassword(password, result[0]["password"])){
-                // console.log(result)
                 return result;
             } else {
                 return 2;
@@ -23,7 +22,7 @@ export class userService{
         let id = await this.knex.select('player_id').from('users').orderBy('player_id','desc').limit(1)
         let genid = parseInt(id[0]['player_id'])+1
         if (result.length ==0){
-            await this.knex("users").insert({ player_id: genid, name: name, email: email, password: pwd})
+            await this.knex("users").insert({ player_id: genid, name, email, password: pwd})
             return true;
         }else{
             return false;

@@ -1,5 +1,3 @@
-// const { response } = require("express")
-
 document.querySelector('#map1').addEventListener('click', () => {
     window.location.href = '../gamepage.html'
 })
@@ -13,7 +11,6 @@ document.querySelector('#map2').addEventListener('click', () => {
 async function getOwnerCarID() {
     const res = await fetch('/game/showCar')
     const showCar = await res.json()
-    // console.log(showCar[0][0].id);
     for(let i = 0; i < showCar.length; i++) {
         document.querySelector('#ownedCarID').innerHTML +=
         `<option>${showCar[i][0].id}</option>`
@@ -44,5 +41,6 @@ selectCarForm.addEventListener('submit', async (e) => {
 
 
     let result = await response.json();
-    alert(JSON.stringify(result));
+    alert(`${result}
+    click the map and play`);
 });

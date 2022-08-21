@@ -3,16 +3,14 @@
   font-family: "Montserrat", sans-serif!important;}
 
 .card {
-
-  background-color: green;
-
-  /* box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2); */
-  background-color: grey;
-
+  background-color: #302936;
   max-width: 300px;
   margin: auto;
   text-align: center;
+  color: #ffffff;
+  padding: 10px;
 }
+
   
 .title {
   color: grey;

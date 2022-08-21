@@ -49,11 +49,11 @@ export class gameController {
 
 				const create = await this.gameService.gameCreateCar(model, color, email, usersID);
 				if (create == 1) {
-					res.status(200).json('Create car successfully')
+					res.json({create:true, result:'Create car successfully'})
 				} else if (create == 2) {
-					res.status(200).json('You cannot own more car!!');
+					res.json('You cannot own more car!!');
 				} else {
-					res.status(200).json('Create car failed')
+					res.json('Create car failed')
 				}
 			})
 		} catch (err) {
@@ -66,7 +66,6 @@ export class gameController {
 	selectCar = async (req: Request, res: Response) => {
 		try {
 			const { car_id } = req.body
-			console.log("car id:", car_id);
 			const currentUserID = req.session['users_id'];
 			let result = await this.gameService.gameSelectCar(car_id, currentUserID)
 			req.session['car_id'] = result.car_id;
@@ -86,11 +85,11 @@ export class gameController {
 			let carModel = req.session['model'];
 			let carColor = req.session['color'];
 			const selectedCar = { carID, carModel, carColor };
-			return res.status(200).json(selectedCar);
+			 res.status(200).json(selectedCar);
 		} catch (err) {
 			logger.error(err);
 			res.status(500).json('Internal Server Error')
-			return
+		
 		}
 
 	}
@@ -128,7 +127,7 @@ export class gameController {
 				await this.gameService.writeaicar(name, bestAI, 'trainAI');
 			}
 		} catch (err) {
-			logger.error(err)
+			logger.error(err)	
 			res.status(500).json('Internal Server Error')
 		}
 	}

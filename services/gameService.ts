@@ -27,7 +27,6 @@ export class gameService {
             let result = await this.knex.select('id', 'model', 'color').from('car').where('id', resultOwnedCarInt);
             carArray.push(result);
         }
-        // console.log('Owned car arr: ', JSON.stringify(carArray));
         return carArray
     }
 
@@ -37,36 +36,21 @@ export class gameService {
 
         // Identify car owner
         let result: string[] = await this.knex.select('email').from('users').where('email', email)
-
-        // console.log("car owner", result);
         // Identify current car number (max 5 cars)
-
-
         let currentCar: number[] = await this.knex.select('car_id').from('users_car').where('users_id', usersID)
-        // console.log("What I have now", currentCar);
-        // console.log("current car.length", currentCar.length)
+        
         if (result.length == 1) {
             if (currentCar.length < 5) {
                 // Insert created car
                 await this.knex("car").insert({ model: model, color: color })
                 let getCarID = await this.knex.select('id').from('car').orderBy('id', "desc").first()
-                // console.log(getCarID)
                 // Get latest car ID
                 let carID = parseInt(getCarID.id)
-                // console.log("create car", carID)
                 // Insert users & car relationship
 
                 await this.knex("users_car").insert({ users_id: usersID, car_id: carID })
-                // return jsonData;
-                // return result
-            // } else {
-                // console.log('You cannot own more car!!')
-                // return false;
-
-                // await this.knex("users_car").insert({ users_id: usersID, car_id: carID})
                 return 1;
             } else {
-                console.log('You cannot own more car!!')
                 return 2;
 
             }
@@ -75,20 +59,9 @@ export class gameService {
         }
     }
 
-
-    // gameSelectCar = async (carID: number) => {
-
-    // }
-
     inputranking = async (time: number, playerid: number, carid: number, map: string, name: string) => {
 
-        await this.knex.insert({
-            player_id: playerid,
-            car_id: carid,
-            racetime: time,
-            map: map,
-            name: name
-        }).into("leaderboard")
+        await this.knex.insert({player_id: playerid,car_id: carid,racetime: time,map: map,name: name}).into("leaderboard")
         return true;
     }
 
