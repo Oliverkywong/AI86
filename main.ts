@@ -35,7 +35,6 @@ const userservice = new userService(knex);
 const usercontroller = new userController(userservice)
 app.use(createUserRoutes(usercontroller));
 
-
 app.use(isLogin,express.static("private"));
 
 const port = process.env.PORT || 8989

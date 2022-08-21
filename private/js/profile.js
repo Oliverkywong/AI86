@@ -1,5 +1,4 @@
 // Create car
-
 const createCarForm = document.querySelector("#createCarForm");
 createCarForm.addEventListener('submit', async (e) => {
     e.preventDefault();
@@ -18,7 +17,6 @@ createCarForm.addEventListener('submit', async (e) => {
 });
 
 // Get Owned Car
-
 async function getOwnerCar() {
     const res = await fetch('/car')
     const showCar = await res.json()
@@ -37,7 +35,6 @@ async function getOwnerCar() {
 getOwnerCar();
 
 // Get user info
-
 async function getInfo() {
     const res = await fetch('/user/getInfo');
     const getInfo = await res.json();

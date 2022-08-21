@@ -43,10 +43,10 @@
           <p>Leaderboard</p>
         </a>
         <a href="/logout" class="w3-bar-item w3-button w3-padding-large w3-hover-black">
-            <span class="icon">
-              <i class="fa fa-sign-out w3-xxlarge"></i>
-            </span>
-            <p>Logout</p>
+          <span class="icon">
+            <i class="fa fa-sign-out w3-xxlarge"></i>
+          </span>
+          <p>Logout</p>
         </a>
       </nav>
     </div>
@@ -55,52 +55,54 @@
       <div class="row full-height justify-content-center">
         <div class="col-12 text-center align-self-center py-5">
           <div class="section pb-5 pt-5 pt-sm-2 text-center">
-      <div class="card" style="display: flex;">
-        <img src="img/Kimi-Riakkonen.jpg" style="width:100%">
-        <h1 id="name"></h1>
-        <p id="player_id"></p>
-        <p id="email"></p>
-      </div>
-      <div class="container">
-        <h1>Create Your Car below!</h1>
-      </div>
-      <div class="container">
-        <form id="createCarForm">
-          <select name="model" id="model" onchange="document.getElementById('preview').src = this.value.substring(1)">
-            <option value="../img/F1.png">F1</option>
-            <option value="../img/fer.png">FER</option>
-            <option value="../img/lambo.png">LAMBO</option>
-            <option value="../img/wolf.png">WOLF</option>
-            <option value="../img/dragon.png">DRAGON</option>
-          </select>
-          <select name="color" id="color" onchange="document.getElementById('preview').style.backgroundColor = this.value">
-            <option value="red">Red</option>
-            <option value="green">Green</option>
-            <option value="blue">Blue</option>
-            <option value="orange">Orange</option>
-            <option value="purple">Purple</option>
-            <option value="white">White</option>
-            <option value="black">Black</option>
-            <option value="silver">Silver</option>
-            <option value="pink">Pink</option>
-          </select>
-          <button class="btn btn-light" type="submit" value="post">Create Car</button>
-        </form>
-      </div>
-      <div class="container">
-        <img id="preview" class="carPhoto">
-      </div>
-      <div class="container">
-        <h1>Your cars</h1>
-      </div>
-      <div class="container">
-        <div class="row" id="ownedCar"></div>
-      </div>
+            <div class="card" style="display: flex;">
+              <img src="img/Kimi-Riakkonen.jpg" style="width:100%">
+              <h1 id="name"></h1>
+              <p id="player_id"></p>
+              <p id="email"></p>
+            </div>
+            <div class="container">
+              <h1>Create Your Car below!</h1>
+            </div>
+            <div class="container">
+              <form id="createCarForm">
+                <select name="model" id="model"
+                  onchange="document.getElementById('preview').src = this.value.substring(1)">
+                  <option value="../img/F1.png">F1</option>
+                  <option value="../img/fer.png">FER</option>
+                  <option value="../img/lambo.png">LAMBO</option>
+                  <option value="../img/wolf.png">WOLF</option>
+                  <option value="../img/dragon.png">DRAGON</option>
+                </select>
+                <select name="color" id="color"
+                  onchange="document.getElementById('preview').style.backgroundColor = this.value">
+                  <option value="red">Red</option>
+                  <option value="green">Green</option>
+                  <option value="blue">Blue</option>
+                  <option value="orange">Orange</option>
+                  <option value="purple">Purple</option>
+                  <option value="white">White</option>
+                  <option value="black">Black</option>
+                  <option value="silver">Silver</option>
+                  <option value="pink">Pink</option>
+                </select>
+                <button class="btn btn-light" type="submit" value="post">Create Car</button>
+              </form>
+            </div>
+            <div class="container">
+              <img id="preview" class="carPhoto">
+            </div>
+            <div class="container">
+              <h1>Your cars</h1>
+            </div>
+            <div class="container">
+              <div class="row" id="ownedCar"></div>
+            </div>
           </div>
-          </div>
+        </div>
       </div>
     </main>
-  
+
   </div>
   <script src="js/car.js"></script>
   <script src="js/profile.js"></script>

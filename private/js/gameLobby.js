@@ -7,7 +7,6 @@ document.querySelector('#map2').addEventListener('click', () => {
 })
 
 // Get Owned Car ID
-
 async function getOwnerCarID() {
     const res = await fetch('/car')
     const showCar = await res.json()
@@ -20,7 +19,6 @@ async function getOwnerCarID() {
 getOwnerCarID();
 
 // Select car
-
 const selectCarForm = document.querySelector("#selectCarForm");
 selectCarForm.addEventListener('submit', async (e) => {
     e.preventDefault();
@@ -29,7 +27,6 @@ selectCarForm.addEventListener('submit', async (e) => {
     const formObject = {}
     formObject['car_id'] = form.car_id.value
 
-
     const response = await fetch('/selectCar', {
         method: 'POST',
         headers: {
@@ -37,8 +34,6 @@ selectCarForm.addEventListener('submit', async (e) => {
         },
         body: JSON.stringify(formObject),
       })
-
-
 
     let result = await response.json();
     alert(`${result}
